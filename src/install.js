@@ -288,6 +288,7 @@ async function createDefaultUserGroups() {
 	if (!bannedExists) {
 		await createGroup('banned-users');
 	}
+	// await groups.show('verified-users');
 }
 
 async function createAdministrator() {
