@@ -37,13 +37,13 @@ const _privilegeMap = new Map([
 ]);
 
 /** MODIFIED BELOW TO ADD ADITONAL PRIVEGELS */
-_privilegeMap.set('chat:general:channels',{ label: '[[admin/manage/privleges:chat-general-channels]]', type: 'posting' })
-_privilegeMap.set('chat:restricted:channels',{ label: '[[admin/manage/privleges:chat-restrcited-channels]]', type: 'posting' })
-_privilegeMap.set('chat:edit',{ label: '[[admin/manage/privleges:chat-edit-posts]]', type: 'posting' })
-_privilegeMap.set('chat:manage:posts',{ label: '[[admin/manage/privleges:chat-manage-posts]]', type: 'posting' }) /* admin can manage others posts */
-_privilegeMap.set('chat:view:private',{ label: '[[admin/manage/privleges:chat-view-private]]', type: 'viewing' })
-_privilegeMap.set('modify:tags',{ label: '[[admin/manage/privleges:modify-tags]]', type: 'viewing' })
-_privilegeMap.set('modify:user:info',{ label: '[[admin/manage/privleges:modify-user-info]]', type: 'moderation' })
+_privilegeMap.set('chat:general:channels',{ label: '[[admin/manage/privileges:chat-general-channels]]', type: 'posting' })
+_privilegeMap.set('chat:restricted:channels',{ label: '[[admin/manage/privileges:chat-restrcited-channels]]', type: 'posting' })
+_privilegeMap.set('chat:edit',{ label: '[[admin/manage/privileges:chat-edit-posts]]', type: 'posting' })
+_privilegeMap.set('chat:manage:posts',{ label: '[[admin/manage/privileges:chat-manage-posts]]', type: 'posting' }) /* admin can manage others posts */
+_privilegeMap.set('chat:view:private',{ label: '[[admin/manage/privileges:chat-view-private]]', type: 'viewing' })
+_privilegeMap.set('modify:tags',{ label: '[[admin/manage/privileges:modify-tags]]', type: 'viewing' })
+_privilegeMap.set('modify:user:info',{ label: '[[admin/manage/privileges:modify-user-info]]', type: 'moderation' })
 
 privsGlobal.init = async () => {
 	privsGlobal._coreSize = _privilegeMap.size;
