@@ -5,7 +5,9 @@ define('forum/groups/list', [
 ], function (infinitescroll, Benchpress, api, bootbox, alerts) {
 	const Groups = {};
 
+	
 	Groups.init = function () {
+		
 		infinitescroll.init(Groups.loadMoreGroups);
 
 		// Group creation

@@ -274,8 +274,15 @@ async function createDefaultUserGroups() {
 		});
 	}
 
-	const [verifiedExists, unverifiedExists, bannedExists] = await groups.exists([
+	const [verifiedExists, unverifiedExists, bannedExists,
+		studentExists,
+		assistantStaffExists,
+		staffExists
+	] = await groups.exists([
 		'verified-users', 'unverified-users', 'banned-users',
+		'student',			/** added these three */
+		'assistant-staff',  /** added these three */
+		'staff',			/** added these three */
 	]);
 	if (!verifiedExists) {
 		await createGroup('verified-users');
@@ -288,7 +295,21 @@ async function createDefaultUserGroups() {
 	if (!bannedExists) {
 		await createGroup('banned-users');
 	}
-	// await groups.show('verified-users');
+
+	if (!studentExists) {
+		await createGroup('students');
+	}
+
+	if (!assistantStaffExists) {
+		await createGroup('assistant-staff');
+	}
+
+	if (!staffExists) {
+		await createGroup('staff');
+	}
+	await groups.show('students');
+	await groups.show('assistant-staff');
+	await groups.show('staff');
 }
 
 async function createAdministrator() {
