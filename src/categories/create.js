@@ -50,6 +50,27 @@ module.exports = function (Categories) {
 			category.backgroundImage = data.backgroundImage;
 		}
 
+		// Mods get all privileges, by default
+		// registered-users get a subset of these
+		// privileges:
+		const allPrivileges = [
+			'groups:find',
+			'groups:read',
+			'groups:topics:read',
+			'groups:topics:create',
+			'groups:topics:reply',
+			'groups:topics:tag',
+			'groups:posts:edit',
+			'groups:posts:history',
+			'groups:posts:delete',
+			'groups:posts:upvote',
+			'groups:posts:downvote',
+			'groups:topics:delete',
+			'groups:topics:schedule',
+			'groups:posts:view_deleted',
+			'groups:purge',
+		]
+
 		const defaultPrivileges = [
 			'groups:find',
 			'groups:read',
@@ -64,17 +85,15 @@ module.exports = function (Categories) {
 			'groups:posts:downvote',
 			'groups:topics:delete',
 		];
-		const modPrivileges = defaultPrivileges.concat([
-			'groups:topics:schedule',
-			'groups:posts:view_deleted',
-			'groups:purge',
-		]);
+		const modPrivileges = allPrivileges;
 		const guestPrivileges = ['groups:find', 'groups:read', 'groups:topics:read'];
 
 		const result = await plugins.hooks.fire('filter:category.create', {
 			category: category,
 			data: data,
-			defaultPrivileges: defaultPrivileges,
+			// If defaultPrivileges are specified in categories.json, use that,
+			// otherwise follow defaults
+			defaultPrivileges: data.defaultPrivileges ? data.defaultPrivileges : defaultPrivileges,
 			modPrivileges: modPrivileges,
 			guestPrivileges: guestPrivileges,
 		});
