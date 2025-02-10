@@ -34,6 +34,7 @@ const _privilegeMap = new Map([
 	['posts:view_deleted', { label: '[[admin/manage/privileges:view-deleted]]', type: 'moderation' }],
 	['purge', { label: '[[admin/manage/privileges:purge]]', type: 'moderation' }],
 	['moderate', { label: '[[admin/manage/privileges:moderate]]', type: 'moderation' }],
+	// TODO: Add endorsement here
 ]);
 
 privsCategories.init = async () => {

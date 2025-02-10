@@ -6,7 +6,8 @@
         "bgColor": "#fda34b",
         "color": "#ffffff",
         "icon" : "fa-bullhorn",
-        "order": 1
+        "order": 1,
+        "defaultPrivileges": ["groups:find", "groups:read", "groups:topics:read"]
     },
     {
         "name": "General Discussion",
@@ -18,13 +19,14 @@
         "order": 2
     },
     {
-        "name": "Blogs",
-        "description": "Blog posts from individual members",
-        "descriptionParsed": "<p>Blog posts from individual members</p>\n",
+        "name": "Course Handouts",
+        "description": "Course handouts and other materials",
+        "descriptionParsed": "<p>Course handouts and other materials</p>\n",
         "bgColor": "#86ba4b",
         "color": "#ffffff",
         "icon" : "fa-newspaper-o",
-        "order": 4
+        "order": 4,
+        "defaultPrivileges": ["groups:find", "groups:read", "groups:topics:read"]
     },
     {
         "name": "Comments & Feedback",
