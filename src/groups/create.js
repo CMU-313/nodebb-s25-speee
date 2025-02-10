@@ -43,6 +43,8 @@ module.exports = function (Groups) {
 			disableLeave: disableLeave,
 		};
 
+		/**NODEBB SPEE UPDATE */
+		// console.log(data);
 		await plugins.hooks.fire('filter:group.create', { group: groupData, data: data });
 
 		await db.sortedSetAdd('groups:createtime', groupData.createtime, groupData.name);
