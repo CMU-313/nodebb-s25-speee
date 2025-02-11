@@ -6,14 +6,19 @@ const privileges = require('../../privileges');
 const privilegesController = module.exports;
 
 privilegesController.get = async function (req, res) {
+	console.log('getting privlege data \n');
 	const cid = req.params.cid ? parseInt(req.params.cid, 10) || 0 : 0;
 	const isAdminPriv = req.params.cid === 'admin';
 
 	let privilegesData;
 	if (cid > 0) {
+		console.log('cid > 0; \n');
 		privilegesData = await privileges.categories.list(cid);
 	} else if (cid === 0) {
+		console.log(`cid = 0; isAdminPPriv ${isAdminPriv}\n`);
 		privilegesData = await (isAdminPriv ? privileges.admin.list(req.uid) : privileges.global.list());
+		// console.log("group priv list: \n");
+		// console.log(JSON.stringify(privilegesData));
 	}
 
 	const categoriesData = [{
@@ -41,6 +46,8 @@ privilegesController.get = async function (req, res) {
 	}
 
 	const group = req.query.group ? req.query.group : '';
+
+	console.log(`privleges: ${JSON.stringify(privilegesData)}`);
 	res.render('admin/manage/privileges', {
 		privileges: privilegesData,
 		categories: categoriesData,
