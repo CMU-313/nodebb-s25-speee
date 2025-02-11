@@ -69,7 +69,7 @@ module.exports = function (Categories) {
 			'groups:topics:schedule',
 			'groups:posts:view_deleted',
 			'groups:purge',
-		]
+		];
 
 		const defaultPrivileges = [
 			'groups:find',
