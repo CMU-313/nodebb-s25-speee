@@ -65,6 +65,7 @@ Groups.isPrivilegeGroup = function (groupName) {
 };
 
 Groups.getGroupsFromSet = async function (set, start, stop) {
+	console.log("getGroupsFromSet\n");
 	let groupNames;
 	if (set === 'groups:visible:name') {
 		groupNames = await db.getSortedSetRangeByLex(set, '-', '+', start, stop - start + 1);

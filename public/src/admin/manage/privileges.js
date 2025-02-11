@@ -508,6 +508,7 @@ define('admin/manage/privileges', [
 	}
 
 	function getGroupPrivilegeFilter() {
+		console.log("getting priv filter \n");
 		return $('[component="privileges/groups/filters"] .btn-warning').attr('data-filter');
 	}
 

@@ -36,6 +36,15 @@ const _privilegeMap = new Map([
 	['moderate', { label: '[[admin/manage/privileges:moderate]]', type: 'moderation' }],
 ]);
 
+_privilegeMap.set('chat:general:channels',{ label: '[[admin/manage/privileges:chat-general-channels]]', type: 'posting' })
+_privilegeMap.set('chat:restricted:channels',{ label: '[[admin/manage/privileges:chat-restrcited-channels]]', type: 'posting' })
+_privilegeMap.set('chat:edit',{ label: '[[admin/manage/privileges:chat-edit-posts]]', type: 'posting' })
+_privilegeMap.set('chat:manage:posts',{ label: '[[admin/manage/privileges:chat-manage-posts]]', type: 'posting' }) /* admin can manage others posts */
+_privilegeMap.set('chat:view:private',{ label: '[[admin/manage/privileges:chat-view-private]]', type: 'viewing' })
+_privilegeMap.set('modify:tags',{ label: '[[admin/manage/privileges:modify-tags]]', type: 'viewing' })
+_privilegeMap.set('modify:user:info',{ label: '[[admin/manage/privileges:modify-user-info]]', type: 'moderation' })
+
+
 privsCategories.init = async () => {
 	privsCategories._coreSize = _privilegeMap.size;
 	await plugins.hooks.fire('static:privileges.categories.init', {
@@ -202,6 +211,7 @@ privsCategories.filterUids = async function (privilege, cid, uids) {
 };
 
 privsCategories.give = async function (privileges, cid, members) {
+
 	await helpers.giveOrRescind(groups.join, privileges, cid, members);
 	plugins.hooks.fire('action:privileges.categories.give', {
 		privileges: privileges,

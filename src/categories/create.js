@@ -71,12 +71,46 @@ module.exports = function (Categories) {
 		]);
 		const guestPrivileges = ['groups:find', 'groups:read', 'groups:topics:read'];
 
+		const staffPriv = [
+			'groups:chat:general:channels',
+			'groups:hat:view:private',
+			'groups:chat:edit',
+			'groups:chat:restricted:channels',
+			'groups:modify:tags'
+		];
+
+		const aStaffPriv = [
+			'chat:general:channels',
+			'chat:view:private',
+			'chat:edit'
+		];
+
+		const studentPriv = [
+			'chat:general:channels',
+			'chat:edit'
+		];
+
+		const courseAdminPriv = [
+			'chat:general:channels',
+			'chat:view:private',
+			'chat:edit',
+			'chat:restricted:channels',
+			'modify:tags',
+			'modify:user:info',
+			'chat:manage:posts'
+		];
+
 		const result = await plugins.hooks.fire('filter:category.create', {
 			category: category,
 			data: data,
 			defaultPrivileges: defaultPrivileges,
 			modPrivileges: modPrivileges,
 			guestPrivileges: guestPrivileges,
+			staffPriv: staffPriv,
+			courseAdminPriv: courseAdminPriv,
+			aStaffPriv: aStaffPriv,
+			studentPriv: studentPriv,
+
 		});
 		category = result.category;
 
@@ -91,7 +125,14 @@ module.exports = function (Categories) {
 			['categories:name', 0, `${data.name.slice(0, 200).toLowerCase()}:${category.cid}`],
 		]);
 
+		console.log(`category privs: ${result.courseAdminPriv}`);
 		await privileges.categories.give(result.defaultPrivileges, category.cid, 'registered-users');
+		await privileges.categories.give(result.defaultPrivileges, category.cid, ['students','assistant-staff','staff']);
+		await privileges.categories.give(result.staffPriv, category.cid, 'staff');
+		await privileges.categories.give(result.studentPriv, category.cid, 'students');
+		await privileges.categories.give(result.aStaffPriv, category.cid, 'assistant-staff');
+		await privileges.categories.give(result.courseAdminPriv, category.cid,['administrators', 'Global Moderators']);
+
 		await privileges.categories.give(result.modPrivileges, category.cid, ['administrators', 'Global Moderators']);
 		await privileges.categories.give(result.guestPrivileges, category.cid, ['guests', 'spiders']);
 

@@ -74,6 +74,7 @@ privsGlobal.getPrivilegeList = async () => {
 };
 
 privsGlobal.list = async function () {
+	console.log("listing all global privileges \n");
 	async function getLabels() {
 		const labels = Array.from(_privilegeMap.values()).map(data => data.label);
 		return await utils.promiseParallel({
@@ -87,6 +88,8 @@ privsGlobal.list = async function () {
 		groups: privsGlobal.getGroupPrivilegeList(),
 	});
 
+	console.log("GROUPS FROM PRIVS GLOBAL LIST: \n");
+	
 	const payload = await utils.promiseParallel({
 		labels: getLabels(),
 		labelData: Array.from(_privilegeMap.values()),
@@ -94,6 +97,7 @@ privsGlobal.list = async function () {
 		groups: helpers.getGroupPrivileges(0, keys.groups),
 	});
 	payload.keys = keys;
+	// console.log(JSON.stringify(keys.groups));
 
 	payload.columnCountUserOther = keys.users.length - privsGlobal._coreSize;
 	payload.columnCountGroupOther = keys.groups.length - privsGlobal._coreSize;

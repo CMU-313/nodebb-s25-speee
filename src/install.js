@@ -290,6 +290,7 @@ async function createDefaultUserGroups() {
 		'assistant-staff',  /** added these three */
 		'staff',			/** added these three */
 	]);
+	console.log(`student exists ${studentExists}`);
 	if (!verifiedExists) {
 		await createGroup('verified-users');
 	}
