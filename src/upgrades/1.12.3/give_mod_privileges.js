@@ -44,7 +44,7 @@ module.exports = {
 			'groups:local:login',
 		];
 
-		
+
 
 		const cids = await db.getSortedSetRevRange('categories:cid', 0, -1);
 		for (const cid of cids) {

@@ -98,7 +98,7 @@ module.exports = function (User) {
 			db.incrObjectField('global', 'userCount'),
 			analytics.increment('registrations'),
 			db.sortedSetAddBulk(bulkAdd),
-			groups.join(['registered-users', 'unverified-users','students'], userData.uid),
+			groups.join(['registered-users', 'unverified-users', 'students'], userData.uid),
 			User.notifications.sendWelcomeNotification(userData.uid),
 			storePassword(userData.uid, data.password),
 			User.updateDigestSetting(userData.uid, meta.config.dailyDigestFreq),

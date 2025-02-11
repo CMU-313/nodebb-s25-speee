@@ -36,15 +36,6 @@ const _privilegeMap = new Map([
 	['view:users:info', { label: '[[admin/manage/privileges:view-users-info]]', type: 'moderation' }],
 ]);
 
-/**  UNCOMMENT TO UPDATE CATEGORY PRIVILEGES  */
-// _privilegeMap.set('chat:general:channels',{ label: '[[admin/manage/privileges:chat-general-channels]]', type: 'posting' })
-// _privilegeMap.set('chat:restricted:channels',{ label: '[[admin/manage/privileges:chat-restrcited-channels]]', type: 'posting' })
-// _privilegeMap.set('chat:edit',{ label: '[[admin/manage/privileges:chat-edit-posts]]', type: 'posting' })
-// _privilegeMap.set('chat:manage:posts',{ label: '[[admin/manage/privileges:chat-manage-posts]]', type: 'posting' }) /* admin can manage others posts */
-// _privilegeMap.set('chat:view:private',{ label: '[[admin/manage/privileges:chat-view-private]]', type: 'viewing' })
-// _privilegeMap.set('modify:tags',{ label: '[[admin/manage/privileges:modify-tags]]', type: 'viewing' })
-// _privilegeMap.set('modify:user:info',{ label: '[[admin/manage/privileges:modify-user-info]]', type: 'moderation' })
-
 privsGlobal.init = async () => {
 	privsGlobal._coreSize = _privilegeMap.size;
 	await plugins.hooks.fire('static:privileges.global.init', {
@@ -74,7 +65,7 @@ privsGlobal.getPrivilegeList = async () => {
 };
 
 privsGlobal.list = async function () {
-	console.log("listing all global privileges \n");
+	console.log('listing all global privileges \n');
 	async function getLabels() {
 		const labels = Array.from(_privilegeMap.values()).map(data => data.label);
 		return await utils.promiseParallel({
@@ -88,8 +79,7 @@ privsGlobal.list = async function () {
 		groups: privsGlobal.getGroupPrivilegeList(),
 	});
 
-	console.log("GROUPS FROM PRIVS GLOBAL LIST: \n");
-	
+	console.log('GROUPS FROM PRIVS GLOBAL LIST: \n');
 	const payload = await utils.promiseParallel({
 		labels: getLabels(),
 		labelData: Array.from(_privilegeMap.values()),

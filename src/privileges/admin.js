@@ -46,7 +46,7 @@ privsAdmin.getPrivilegeList = async () => {
 		privsAdmin.getUserPrivilegeList(),
 		privsAdmin.getGroupPrivilegeList(),
 	]);
-	
+
 	return user.concat(group);
 };
 
@@ -140,7 +140,7 @@ privsAdmin.list = async function (uid) {
 	const userPrivilegeList = await privsAdmin.getUserPrivilegeList();
 	const groupPrivilegeList = await privsAdmin.getGroupPrivilegeList();
 
-	
+
 
 	// Restrict privileges column to superadmins
 	if (!(await user.isAdministrator(uid))) {

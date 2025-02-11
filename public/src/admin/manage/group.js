@@ -18,7 +18,7 @@ define('admin/manage/group', [
 	const Groups = {};
 
 	Groups.init = function () {
-		console.log("initalizing admin manage groups \n");
+		console.log('initalizing admin manage groups \n');
 		const groupIcon = $('#group-icon');
 		const changeGroupUserTitle = $('#change-group-user-title');
 		const changeGroupLabelColor = $('#change-group-label-color');

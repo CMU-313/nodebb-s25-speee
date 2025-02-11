@@ -195,9 +195,9 @@ module.exports = function (utils, Benchpress, relative_path) {
 			const spidersEnabled = ['groups:find', 'groups:read', 'groups:topics:read', 'groups:view:users', 'groups:view:tags', 'groups:view:groups'];
 			const globalModDisabled = ['groups:moderate'];
 
-			const assistantStaffDisabled = ['chat:restricted:channels','chat:manage:posts','modify:tags','modify:user:info'];
-			const staffDisabled = ['chat:manage:posts','modify:user:info'];
-			const studentdisabled = ['chat:restricted:channels','chat:manage:posts','chat:view:private','modify:tags','modify:user:info'];
+			const assistantStaffDisabled = ['chat:restricted:channels', 'chat:manage:posts', 'modify:tags', 'modify:user:info'];
+			const staffDisabled = ['chat:manage:posts', 'modify:user:info'];
+			const studentdisabled = ['chat:restricted:channels', 'chat:manage:posts', 'chat:view:private', 'modify:tags', 'modify:user:info'];
 
 			const disabled =
 				(member === 'guests' && (guestDisabled.includes(priv.name) || priv.name.startsWith('groups:admin:'))) ||

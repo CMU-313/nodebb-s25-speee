@@ -49,9 +49,9 @@ questions.optional = [
 
 function checkSetupFlagEnv() {
 	let setupVal = install.values;
-	
 
-	
+
+
 	const envConfMap = {
 		CONFIG: 'config',
 		NODEBB_CONFIG: 'config',
@@ -71,7 +71,7 @@ function checkSetupFlagEnv() {
 
 	// Set setup values from env vars (if set)
 	const envKeys = Object.keys(process.env);
-	
+
 	if (Object.keys(envConfMap).some(key => envKeys.includes(key))) {
 		winston.info('[install/checkSetupFlagEnv] checking env vars for setup info...');
 		setupVal = setupVal || {};
@@ -102,7 +102,6 @@ function checkSetupFlagEnv() {
 
 	console.log(setupVal);
 	if (setupVal && typeof setupVal === 'object') {
-		
 		if (setupVal['admin:username'] && setupVal['admin:password'] && setupVal['admin:password:confirm'] && setupVal['admin:email']) {
 			install.values = setupVal;
 		} else {
@@ -283,12 +282,9 @@ async function createDefaultUserGroups() {
 	const [verifiedExists, unverifiedExists, bannedExists,
 		studentExists,
 		assistantStaffExists,
-		staffExists
+		staffExists,
 	] = await groups.exists([
-		'verified-users', 'unverified-users', 'banned-users',
-		'student',			/** added these three */
-		'assistant-staff',  /** added these three */
-		'staff',			/** added these three */
+		'verified-users', 'unverified-users', 'banned-users', 'student', 'assistant-staff', 'staff',
 	]);
 	// console.log(`student exists ${studentExists}`);
 	if (!verifiedExists) {
@@ -322,7 +318,7 @@ async function createDefaultUserGroups() {
 async function createAdministrator() {
 	const Groups = require('./groups');
 	const memberCount = await Groups.getMemberCount('administrators');
-	const groupsInfo = await Groups.getGroupsAndMembers(['administrators'])
+	// const groupsInfo = await Groups.getGroupsAndMembers(['administrators']);
 	// console.log(groupsInfo[0].members);
 	// console.log(user.)
 	if (memberCount > 0) {

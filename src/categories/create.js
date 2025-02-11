@@ -71,45 +71,12 @@ module.exports = function (Categories) {
 		]);
 		const guestPrivileges = ['groups:find', 'groups:read', 'groups:topics:read'];
 
-		const staffPriv = [
-			'groups:chat:general:channels',
-			'groups:hat:view:private',
-			'groups:chat:edit',
-			'groups:chat:restricted:channels',
-			'groups:modify:tags'
-		];
-
-		const aStaffPriv = [
-			'chat:general:channels',
-			'chat:view:private',
-			'chat:edit'
-		];
-
-		const studentPriv = [
-			'chat:general:channels',
-			'chat:edit'
-		];
-
-		const courseAdminPriv = [
-			'chat:general:channels',
-			'chat:view:private',
-			'chat:edit',
-			'chat:restricted:channels',
-			'modify:tags',
-			'modify:user:info',
-			'chat:manage:posts'
-		];
-
 		const result = await plugins.hooks.fire('filter:category.create', {
 			category: category,
 			data: data,
 			defaultPrivileges: defaultPrivileges,
 			modPrivileges: modPrivileges,
 			guestPrivileges: guestPrivileges,
-			// staffPriv: staffPriv,
-			// courseAdminPriv: courseAdminPriv,
-			// aStaffPriv: aStaffPriv,
-			// studentPriv: studentPriv,
 
 		});
 		category = result.category;
