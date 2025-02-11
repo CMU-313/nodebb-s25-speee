@@ -6,7 +6,8 @@
         "bgColor": "#fda34b",
         "color": "#ffffff",
         "icon" : "fa-bullhorn",
-        "order": 1
+        "order": 1,
+        "tagWhitelist": ["exam","quiz","homework"]
     },
     {
         "name": "General Discussion",
@@ -15,7 +16,8 @@
         "bgColor": "#59b3d0",
         "color": "#ffffff",
         "icon" : "fa-comments-o",
-        "order": 2
+        "order": 2,
+        "tagWhitelist": ["exam","quiz","homework"]
     },
     {
         "name": "Blogs",
@@ -24,7 +26,8 @@
         "bgColor": "#86ba4b",
         "color": "#ffffff",
         "icon" : "fa-newspaper-o",
-        "order": 4
+        "order": 4,
+        "tagWhitelist": ["exam","quiz","homework"]
     },
     {
         "name": "Comments & Feedback",
@@ -33,6 +36,7 @@
         "bgColor": "#e95c5a",
         "color": "#ffffff",
         "icon" : "fa-question",
-        "order": 3
+        "order": 3,
+        "tagWhiteList": ["exam","quiz","homework"]
     }
 ]

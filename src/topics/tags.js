@@ -17,7 +17,10 @@ const utils = require('../utils');
 const batch = require('../batch');
 const cache = require('../cache');
 
+
+
 module.exports = function (Topics) {
+
 	Topics.createTags = async function (tags, tid, timestamp) {
 		if (!Array.isArray(tags) || !tags.length) {
 			return;
@@ -472,7 +475,8 @@ module.exports = function (Topics) {
 
 	async function findMatches(data) {
 		let { query } = data;
-		let tagWhitelist = [];
+		// set of relevant tags that only admin can add
+		let tagWhitelist = ['exam','quiz','homework'];
 		if (parseInt(data.cid, 10)) {
 			tagWhitelist = await categories.getTagWhitelist([data.cid]);
 		}

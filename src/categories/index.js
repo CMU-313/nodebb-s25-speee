@@ -152,7 +152,7 @@ Categories.setUnread = async function (tree, cids, uid) {
 };
 
 Categories.getTagWhitelist = async function (cids) {
-	const cachedData = {};
+	const cachedData = {1:['Homework','Assignment','Project','Quiz','Test','Exam','Midterm','Final','Lab','Lecture','Class','Course']};
 
 	const nonCachedCids = cids.filter((cid) => {
 		const data = cache.get(`cid:${cid}:tag:whitelist`);

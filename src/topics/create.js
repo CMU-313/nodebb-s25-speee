@@ -17,6 +17,7 @@ const translator = require('../translator');
 
 module.exports = function (Topics) {
 	Topics.create = async function (data) {
+		// console.log('the data for topics.create func is ', data);
 		// This is an internal method, consider using Topics.post instead
 		const timestamp = data.timestamp || Date.now();
 
@@ -94,7 +95,7 @@ module.exports = function (Topics) {
 		if (!isAdmin) {
 			Topics.checkTitle(data.title);
 		}
-
+		
 		await Topics.validateTags(data.tags, data.cid, uid);
 		data.tags = await Topics.filterTags(data.tags, data.cid);
 		if (!data.fromQueue && !isAdmin) {
