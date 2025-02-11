@@ -31,7 +31,7 @@
     "groupsExemptFromMaintenanceMode": ["administrators", "Global Moderators"],
     "minimumPostLength": 8,
     "maximumPostLength": 32767,
-    "systemTags": ["exam","quiz","homework"],
+    "systemTags": "exam, quiz, homework",
     "minimumTagsPerTopic": 0,
     "maximumTagsPerTopic": 5,
     "minimumTagLength": 3,
