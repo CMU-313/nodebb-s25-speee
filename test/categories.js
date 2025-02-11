@@ -469,7 +469,6 @@ describe('Categories', () => {
 		});
 
 		it('should remove privilege', async () => {
-			console.log(JSON.stringify(categoryObj));
 			await apiCategories.setPrivilege({ uid: adminUid }, { cid: categoryObj.cid, privilege: 'groups:topics:delete', set: false, member: 'registered-users' });
 			const canDeleteTopics = await privileges.categories.can('topics:delete', categoryObj.cid, posterUid);
 			assert(!canDeleteTopics);

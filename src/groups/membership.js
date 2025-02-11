@@ -8,12 +8,10 @@ const cache = require('../cache');
 
 module.exports = function (Groups) {
 	Groups.getMembers = async function (groupName, start, stop) {
-		// console.log("getMembers \n");
 		return await db.getSortedSetRevRange(`group:${groupName}:members`, start, stop);
 	};
 
 	Groups.getMemberUsers = async function (groupNames, start, stop) {
-		// console.log("getMemberUsers \n");
 		async function get(groupName) {
 			const uids = await Groups.getMembers(groupName, start, stop);
 			return await user.getUsersFields(uids, ['uid', 'username', 'picture', 'userslug']);
@@ -22,12 +20,10 @@ module.exports = function (Groups) {
 	};
 
 	Groups.getMembersOfGroups = async function (groupNames) {
-		// console.log("getMembersOfGroups \n");
 		return await db.getSortedSetsMembers(groupNames.map(name => `group:${name}:members`));
 	};
 
 	Groups.isMember = async function (uid, groupName) {
-		// console.log("isMember \n");
 		if (!uid || parseInt(uid, 10) <= 0 || !groupName) {
 			return isMemberOfEphemeralGroup(uid, groupName);
 		}
@@ -43,7 +39,6 @@ module.exports = function (Groups) {
 	};
 
 	Groups.isMembers = async function (uids, groupName) {
-		// console.log("isMembers \n");
 		if (!groupName || !uids.length) {
 			return uids.map(() => false);
 		}
@@ -68,7 +63,6 @@ module.exports = function (Groups) {
 	};
 
 	Groups.isMemberOfGroups = async function (uid, groups) {
-		// console.log("isMemberOfGroups \n");
 		if (!uid || parseInt(uid, 10) <= 0 || !groups.length) {
 			return groups.map(groupName => isMemberOfEphemeralGroup(uid, groupName));
 		}

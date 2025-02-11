@@ -7,7 +7,6 @@ const db = require('../database');
 
 module.exports = function (Groups) {
 	Groups.create = async function (data) {
-		// console.log("creating a group \n");
 		const isSystem = isSystemGroup(data);
 		const timestamp = data.timestamp || Date.now();
 		let disableJoinRequests = parseInt(data.disableJoinRequests, 10) === 1 ? 1 : 0;
@@ -44,8 +43,6 @@ module.exports = function (Groups) {
 			disableLeave: disableLeave,
 		};
 
-		/** NODEBB SPEE UPDATE */
-		// console.log(data);
 		await plugins.hooks.fire('filter:group.create', { group: groupData, data: data });
 
 		await db.sortedSetAdd('groups:createtime', groupData.createtime, groupData.name);

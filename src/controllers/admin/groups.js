@@ -67,9 +67,6 @@ async function getGroupNames() {
 		name !== 'registered-users' &&
 		name !== 'verified-users' &&
 		name !== 'unverified-users' &&
-		name !== 'students' &&
-		name !== 'staff' &&
-		name !== 'assistant-staff' &&
 		name !== groups.BANNED_USERS
 	)).sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
 }

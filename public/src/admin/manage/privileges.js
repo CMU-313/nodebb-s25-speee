@@ -42,8 +42,6 @@ define('admin/manage/privileges', [
 	};
 
 	Privileges.setupPrivilegeTable = function () {
-		/** NODEBB SPEE UPDATE */
-		console.log('setupPrivilegeTable\n');
 		$('.privilege-table-container').on('change', 'input[type="checkbox"]:not(.checkbox-helper)', function () {
 			const checkboxEl = this;
 			const $checkboxEl = $(this);
@@ -252,8 +250,6 @@ define('admin/manage/privileges', [
 	Privileges.setPrivilege = (member, privilege, state) => api[state ? 'put' : 'del'](`/categories/${isNaN(cid) ? 0 : cid}/privileges/${encodeURIComponent(privilege)}`, { member });
 
 	Privileges.addUserToPrivilegeTable = function () {
-		/** NODEBB SPEE UPDATE */
-		console.log('adding user to privlege table\n');
 		const modal = bootbox.dialog({
 			title: '[[admin/manage/categories:alert.find-user]]',
 			message: '<input class="form-control input-lg" placeholder="[[admin/manage/categories:alert.user-search]]" />',
@@ -450,8 +446,6 @@ define('admin/manage/privileges', [
 
 	async function addUserToCategory(user, cb) {
 		cb = cb || function () {};
-		/** NODEBB UPDATE */
-		console.log('addUserToCategory \n');
 		const userRow = document.querySelector('.privilege-table [data-uid="' + user.uid + '"]');
 		if (userRow) {
 			hightlightRowByDataAttr('data-uid', user.uid);
@@ -508,7 +502,6 @@ define('admin/manage/privileges', [
 	}
 
 	function getGroupPrivilegeFilter() {
-		console.log('getting priv filter \n');
 		return $('[component="privileges/groups/filters"] .btn-warning').attr('data-filter');
 	}
 

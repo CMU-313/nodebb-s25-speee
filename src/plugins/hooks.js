@@ -244,7 +244,6 @@ async function fireFilterHook(hook, hookList, params) {
 		return params;
 	}
 
-
 	async function fireMethod(hookObj, params) {
 		if (typeof hookObj.method !== 'function') {
 			if (global.env === 'development') {
@@ -297,7 +296,6 @@ async function fireStaticHook(hook, hookList, params) {
 	if (!Array.isArray(hookList) || !hookList.length) {
 		return;
 	}
-	// console.log(hook,hookList);
 	// don't bubble errors from these hooks, so bad plugins don't stop startup
 	const noErrorHooks = ['static:app.load', 'static:assets.prepare', 'static:app.preload'];
 

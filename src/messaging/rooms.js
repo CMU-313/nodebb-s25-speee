@@ -550,7 +550,7 @@ module.exports = function (Messaging) {
 	};
 
 	const globalUserGroups = [
-		'registered-users', 'verified-users', 'unverified-users', 'banned-users', 'students', 'assistant-staff', 'staff',
+		'registered-users', 'verified-users', 'unverified-users', 'banned-users',
 	];
 
 	Messaging.getRoomIcon = function (roomData) {

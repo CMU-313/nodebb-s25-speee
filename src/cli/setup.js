@@ -23,13 +23,11 @@ async function setup(initConfig) {
 	let configFile = paths.config;
 	const config = nconf.any(['config', 'CONFIG']);
 	if (config) {
-		console.log(config);
 		nconf.set('config', config);
 		configFile = path.resolve(paths.baseDir, config);
 	}
 
 	const data = await install.setup();
-	console.log(data);
 
 	prestart.loadConfig(configFile);
 

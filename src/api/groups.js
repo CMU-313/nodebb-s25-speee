@@ -13,7 +13,6 @@ const slugify = require('../slugify');
 const groupsAPI = module.exports;
 
 groupsAPI.list = async (caller, data) => {
-	// console.log("groupsAPI.list");
 	const groupsPerPage = 10;
 	const start = parseInt(data.after || 0, 10);
 	const stop = start + groupsPerPage - 1;

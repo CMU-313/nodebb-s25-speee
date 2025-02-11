@@ -142,9 +142,6 @@ helpers.getGroupPrivileges = async function (cid, groupPrivileges) {
 	moveToFront(groupNames, 'unverified-users');
 	moveToFront(groupNames, 'verified-users');
 	moveToFront(groupNames, 'registered-users');
-	moveToFront(groupNames, 'students');
-	moveToFront(groupNames, 'staff');
-	moveToFront(groupNames, 'assistant-staff');
 
 	const adminIndex = groupNames.indexOf('administrators');
 	if (adminIndex !== -1) {
@@ -170,8 +167,6 @@ helpers.getGroupPrivileges = async function (cid, groupPrivileges) {
 			isSystem: groupData[index] && !!groupData[index].system,
 		};
 	});
-	// console.log("GETTING MEMBER DATA:\n");
-	// console.log(JSON.stringify(memberData))
 	return memberData;
 };
 

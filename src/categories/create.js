@@ -77,7 +77,6 @@ module.exports = function (Categories) {
 			defaultPrivileges: defaultPrivileges,
 			modPrivileges: modPrivileges,
 			guestPrivileges: guestPrivileges,
-
 		});
 		category = result.category;
 
@@ -92,14 +91,7 @@ module.exports = function (Categories) {
 			['categories:name', 0, `${data.name.slice(0, 200).toLowerCase()}:${category.cid}`],
 		]);
 
-		console.log(`Nodebb SEE updated. Added course admin privilege category: ${result.courseAdminPriv} \n`);
 		await privileges.categories.give(result.defaultPrivileges, category.cid, 'registered-users');
-		// await privileges.categories.give(result.defaultPrivileges, category.cid, ['students','assistant-staff','staff']);
-		// await privileges.categories.give(result.staffPriv, category.cid, 'staff');
-		// await privileges.categories.give(result.studentPriv, category.cid, 'students');
-		// await privileges.categories.give(result.aStaffPriv, category.cid, 'assistant-staff');
-		// await privileges.categories.give(result.courseAdminPriv, category.cid,['administrators', 'Global Moderators']);
-
 		await privileges.categories.give(result.modPrivileges, category.cid, ['administrators', 'Global Moderators']);
 		await privileges.categories.give(result.guestPrivileges, category.cid, ['guests', 'spiders']);
 

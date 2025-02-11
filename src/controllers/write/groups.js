@@ -15,8 +15,6 @@ Groups.exists = async (req, res) => {
 };
 
 Groups.create = async (req, res) => {
-	/** NODE BB SPEE UPDATE */
-	console.log(req);
 	const groupObj = await api.groups.create(req, req.body);
 	helpers.formatApiResponse(200, res, groupObj);
 };

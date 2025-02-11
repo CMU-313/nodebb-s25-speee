@@ -50,8 +50,6 @@ questions.optional = [
 function checkSetupFlagEnv() {
 	let setupVal = install.values;
 
-
-
 	const envConfMap = {
 		CONFIG: 'config',
 		NODEBB_CONFIG: 'config',
@@ -71,7 +69,6 @@ function checkSetupFlagEnv() {
 
 	// Set setup values from env vars (if set)
 	const envKeys = Object.keys(process.env);
-
 	if (Object.keys(envConfMap).some(key => envKeys.includes(key))) {
 		winston.info('[install/checkSetupFlagEnv] checking env vars for setup info...');
 		setupVal = setupVal || {};
@@ -93,14 +90,12 @@ function checkSetupFlagEnv() {
 	try {
 		if (nconf.get('setup')) {
 			const setupJSON = JSON.parse(nconf.get('setup'));
-			console.log(setupJSON);
 			setupVal = { ...setupVal, ...setupJSON };
 		}
 	} catch (err) {
 		winston.error('[install/checkSetupFlagEnv] invalid json in nconf.get(\'setup\'), ignoring setup values from json');
 	}
 
-	console.log(setupVal);
 	if (setupVal && typeof setupVal === 'object') {
 		if (setupVal['admin:username'] && setupVal['admin:password'] && setupVal['admin:password:confirm'] && setupVal['admin:email']) {
 			install.values = setupVal;
@@ -279,14 +274,9 @@ async function createDefaultUserGroups() {
 		});
 	}
 
-	const [verifiedExists, unverifiedExists, bannedExists,
-		studentExists,
-		assistantStaffExists,
-		staffExists,
-	] = await groups.exists([
-		'verified-users', 'unverified-users', 'banned-users', 'student', 'assistant-staff', 'staff',
+	const [verifiedExists, unverifiedExists, bannedExists] = await groups.exists([
+		'verified-users', 'unverified-users', 'banned-users',
 	]);
-	// console.log(`student exists ${studentExists}`);
 	if (!verifiedExists) {
 		await createGroup('verified-users');
 	}
@@ -298,29 +288,11 @@ async function createDefaultUserGroups() {
 	if (!bannedExists) {
 		await createGroup('banned-users');
 	}
-
-	if (!studentExists) {
-		await createGroup('students');
-	}
-
-	if (!assistantStaffExists) {
-		await createGroup('assistant-staff');
-	}
-
-	if (!staffExists) {
-		await createGroup('staff');
-	}
-	// await groups.show('students');
-	// await groups.show('assistant-staff');
-	// await groups.show('staff');
 }
 
 async function createAdministrator() {
 	const Groups = require('./groups');
 	const memberCount = await Groups.getMemberCount('administrators');
-	// const groupsInfo = await Groups.getGroupsAndMembers(['administrators']);
-	// console.log(groupsInfo[0].members);
-	// console.log(user.)
 	if (memberCount > 0) {
 		console.log('Administrator found, skipping Admin setup');
 		return;
