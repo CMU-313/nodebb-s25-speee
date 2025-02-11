@@ -290,7 +290,7 @@ async function createDefaultUserGroups() {
 		'assistant-staff',  /** added these three */
 		'staff',			/** added these three */
 	]);
-	console.log(`student exists ${studentExists}`);
+	// console.log(`student exists ${studentExists}`);
 	if (!verifiedExists) {
 		await createGroup('verified-users');
 	}
@@ -303,17 +303,17 @@ async function createDefaultUserGroups() {
 		await createGroup('banned-users');
 	}
 
-	// if (!studentExists) {
-	// 	await createGroup('students');
-	// }
+	if (!studentExists) {
+		await createGroup('students');
+	}
 
-	// if (!assistantStaffExists) {
-	// 	await createGroup('assistant-staff');
-	// }
+	if (!assistantStaffExists) {
+		await createGroup('assistant-staff');
+	}
 
-	// if (!staffExists) {
-	// 	await createGroup('staff');
-	// }
+	if (!staffExists) {
+		await createGroup('staff');
+	}
 	// await groups.show('students');
 	// await groups.show('assistant-staff');
 	// await groups.show('staff');
@@ -323,7 +323,7 @@ async function createAdministrator() {
 	const Groups = require('./groups');
 	const memberCount = await Groups.getMemberCount('administrators');
 	const groupsInfo = await Groups.getGroupsAndMembers(['administrators'])
-	console.log(groupsInfo[0].members);
+	// console.log(groupsInfo[0].members);
 	// console.log(user.)
 	if (memberCount > 0) {
 		console.log('Administrator found, skipping Admin setup');

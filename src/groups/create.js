@@ -7,7 +7,7 @@ const db = require('../database');
 
 module.exports = function (Groups) {
 	Groups.create = async function (data) {
-		console.log("creating a group \n");
+		// console.log("creating a group \n");
 		const isSystem = isSystemGroup(data);
 		const timestamp = data.timestamp || Date.now();
 		let disableJoinRequests = parseInt(data.disableJoinRequests, 10) === 1 ? 1 : 0;

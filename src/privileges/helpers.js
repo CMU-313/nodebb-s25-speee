@@ -170,6 +170,8 @@ helpers.getGroupPrivileges = async function (cid, groupPrivileges) {
 			isSystem: groupData[index] && !!groupData[index].system,
 		};
 	});
+	// console.log("GETTING MEMBER DATA:\n");
+	// console.log(JSON.stringify(memberData))
 	return memberData;
 };
 

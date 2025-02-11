@@ -189,8 +189,8 @@ module.exports = function (utils, Benchpress, relative_path) {
 		}
 		return states.map(function (priv) {
 			/** NODEBB SPEE UPDATE */
-			console.log("in helpers.common");
-			console.log(member);
+			// console.log("in helpers.common");
+			// console.log(member);
 			const guestDisabled = ['groups:moderate', 'groups:posts:upvote', 'groups:posts:downvote', 'groups:local:login', 'groups:group:create'];
 			const spidersEnabled = ['groups:find', 'groups:read', 'groups:topics:read', 'groups:view:users', 'groups:view:tags', 'groups:view:groups'];
 			const globalModDisabled = ['groups:moderate'];
