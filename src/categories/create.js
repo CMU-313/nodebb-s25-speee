@@ -56,7 +56,6 @@ module.exports = function (Categories) {
 			'groups:topics:read',
 			'groups:topics:create',
 			'groups:topics:reply',
-			'groups:topics:tag',
 			'groups:posts:edit',
 			'groups:posts:history',
 			'groups:posts:delete',
@@ -65,6 +64,7 @@ module.exports = function (Categories) {
 			'groups:topics:delete',
 		];
 		const modPrivileges = defaultPrivileges.concat([
+			'groups:topics:tag',
 			'groups:topics:schedule',
 			'groups:posts:view_deleted',
 			'groups:purge',

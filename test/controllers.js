@@ -866,7 +866,7 @@ describe('Controllers', () => {
 				title: 'topic title',
 				content: 'test topic content',
 				cid: cid,
-				tags: ['nodebb', 'bug', 'test'],
+				tags: ['exam', 'quiz', 'homework'],
 			});
 		});
 

@@ -180,11 +180,11 @@ describe('Categories', () => {
 		const apiCategories = require('../src/api/categories');
 		before(async () => {
 			await Topics.post({
-				uid: posterUid,
+				uid: adminUid,
 				cid: categoryObj.cid,
 				title: 'Test Topic Title',
 				content: 'The content of test topic',
-				tags: ['nodebb'],
+				tags: ['exam'],
 			});
 			const data = await Topics.post({
 				uid: posterUid,
@@ -224,14 +224,14 @@ describe('Categories', () => {
 				cid: categoryObj.cid,
 				after: 0,
 				query: {
-					author: 'poster',
-					tag: 'nodebb',
+					author: 'admin',
+					tag: 'exam',
 				},
 			}, (err, data) => {
 				assert.ifError(err);
 				assert(Array.isArray(data.topics));
-				assert.equal(data.topics[0].user.username, 'poster');
-				assert.equal(data.topics[0].tags[0].value, 'nodebb');
+				assert.equal(data.topics[0].user.username, 'admin');
+				assert.equal(data.topics[0].tags[0].value, 'exam');
 				assert.equal(data.topics[0].category.cid, categoryObj.cid);
 				done();
 			});
@@ -605,13 +605,13 @@ describe('Categories', () => {
 		it('should add tags to category whitelist', (done) => {
 			const data = {};
 			data[cid] = {
-				tagWhitelist: 'nodebb,jquery,javascript',
+				tagWhitelist: 'exam,quiz,homework',
 			};
 			Categories.update(data, (err) => {
 				assert.ifError(err);
 				db.getSortedSetRange(`cid:${cid}:tag:whitelist`, 0, -1, (err, tagWhitelist) => {
 					assert.ifError(err);
-					assert.deepEqual(['nodebb', 'jquery', 'javascript'], tagWhitelist);
+					assert.deepEqual(['exam', 'quiz', 'homework'], tagWhitelist);
 					done();
 				});
 			});
@@ -626,7 +626,7 @@ describe('Categories', () => {
 		});
 
 		it('should return true if category whitelist has tag', (done) => {
-			socketTopics.isTagAllowed({ uid: posterUid }, { tag: 'nodebb', cid: cid }, (err, allowed) => {
+			socketTopics.isTagAllowed({ uid: adminUid }, { tag: 'exam', cid: cid }, (err, allowed) => {
 				assert.ifError(err);
 				assert(allowed);
 				done();
@@ -635,11 +635,11 @@ describe('Categories', () => {
 
 		it('should post a topic with only allowed tags', (done) => {
 			Topics.post({
-				uid: posterUid,
+				uid: adminUid,
 				cid: cid,
 				title: 'Test Topic Title',
 				content: 'The content of test topic',
-				tags: ['nodebb', 'jquery', 'notallowed'],
+				tags: ['exam', 'quiz', 'notallowed'],
 			}, (err, data) => {
 				assert.ifError(err);
 				assert.equal(data.topicData.tags.length, 2);
@@ -733,7 +733,7 @@ describe('Categories', () => {
 					'groups:topics:delete': false,
 					'groups:topics:create': true,
 					'groups:topics:reply': true,
-					'groups:topics:tag': true,
+					'groups:topics:tag': false,
 					'groups:topics:schedule': false,
 					'groups:posts:delete': true,
 					'groups:read': true,
