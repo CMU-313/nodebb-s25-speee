@@ -180,11 +180,11 @@ describe('Categories', () => {
 		const apiCategories = require('../src/api/categories');
 		before(async () => {
 			await Topics.post({
-				uid: posterUid,
+				uid: adminUid,
 				cid: categoryObj.cid,
 				title: 'Test Topic Title',
 				content: 'The content of test topic',
-				tags: ['nodebb'],
+				tags: ['exam'],
 			});
 			const data = await Topics.post({
 				uid: posterUid,
@@ -224,14 +224,14 @@ describe('Categories', () => {
 				cid: categoryObj.cid,
 				after: 0,
 				query: {
-					author: 'poster',
-					tag: 'nodebb',
+					author: 'admin',
+					tag: 'exam',
 				},
 			}, (err, data) => {
 				assert.ifError(err);
 				assert(Array.isArray(data.topics));
-				assert.equal(data.topics[0].user.username, 'poster');
-				assert.equal(data.topics[0].tags[0].value, 'nodebb');
+				assert.equal(data.topics[0].user.username, 'admin');
+				assert.equal(data.topics[0].tags[0].value, 'exam');
 				assert.equal(data.topics[0].category.cid, categoryObj.cid);
 				done();
 			});
