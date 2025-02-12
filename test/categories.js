@@ -625,7 +625,7 @@ describe('Categories', () => {
 		});
 
 		it('should return true if category whitelist has tag', (done) => {
-			socketTopics.isTagAllowed({ uid: posterUid }, { tag: 'nodebb', cid: cid }, (err, allowed) => {
+			socketTopics.isTagAllowed({ uid: adminUid }, { tag: 'exam', cid: cid }, (err, allowed) => {
 				assert.ifError(err);
 				assert(allowed);
 				done();
@@ -638,7 +638,7 @@ describe('Categories', () => {
 				cid: cid,
 				title: 'Test Topic Title',
 				content: 'The content of test topic',
-				tags: ['nodebb', 'jquery', 'notallowed'],
+				tags: ['exam', 'quiz', 'notallowed'],
 			}, (err, data) => {
 				assert.ifError(err);
 				assert.equal(data.topicData.tags.length, 2);
