@@ -635,7 +635,7 @@ describe('Categories', () => {
 
 		it('should post a topic with only allowed tags', (done) => {
 			Topics.post({
-				uid: posterUid,
+				uid: adminUid,
 				cid: cid,
 				title: 'Test Topic Title',
 				content: 'The content of test topic',
