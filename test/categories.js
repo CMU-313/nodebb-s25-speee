@@ -733,7 +733,7 @@ describe('Categories', () => {
 					'groups:topics:delete': false,
 					'groups:topics:create': true,
 					'groups:topics:reply': true,
-					'groups:topics:tag': true,
+					'groups:topics:tag': false,
 					'groups:topics:schedule': false,
 					'groups:posts:delete': true,
 					'groups:read': true,
