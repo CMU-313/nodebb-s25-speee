@@ -604,13 +604,13 @@ describe('Categories', () => {
 		it('should add tags to category whitelist', (done) => {
 			const data = {};
 			data[cid] = {
-				tagWhitelist: 'nodebb,jquery,javascript',
+				tagWhitelist: 'exam,quiz,homework',
 			};
 			Categories.update(data, (err) => {
 				assert.ifError(err);
 				db.getSortedSetRange(`cid:${cid}:tag:whitelist`, 0, -1, (err, tagWhitelist) => {
 					assert.ifError(err);
-					assert.deepEqual(['nodebb', 'jquery', 'javascript'], tagWhitelist);
+					assert.deepEqual(['exam', 'quiz', 'homework'], tagWhitelist);
 					done();
 				});
 			});
