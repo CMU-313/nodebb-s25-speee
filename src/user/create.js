@@ -94,10 +94,11 @@ module.exports = function (User) {
 		}
 
 		await Promise.all([
+			/** NODEBB SPEE UPDATE: edited default groups people join */
 			db.incrObjectField('global', 'userCount'),
 			analytics.increment('registrations'),
 			db.sortedSetAddBulk(bulkAdd),
-			groups.join(['registered-users', 'unverified-users'], userData.uid),
+			groups.join(['registered-users', 'unverified-users', 'students'], userData.uid),
 			User.notifications.sendWelcomeNotification(userData.uid),
 			storePassword(userData.uid, data.password),
 			User.updateDigestSetting(userData.uid, meta.config.dailyDigestFreq),

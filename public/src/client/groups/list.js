@@ -5,6 +5,7 @@ define('forum/groups/list', [
 ], function (infinitescroll, Benchpress, api, bootbox, alerts) {
 	const Groups = {};
 
+
 	Groups.init = function () {
 		infinitescroll.init(Groups.loadMoreGroups);
 
@@ -75,6 +76,7 @@ define('forum/groups/list', [
 				return alerts.error(err);
 			}
 			groups = groups.filter(function (group) {
+				console.log(`group name: ${group.name}`);
 				return group.name !== 'registered-users' && group.name !== 'guests';
 			});
 			Benchpress.render('partials/groups/list', {
