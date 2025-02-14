@@ -1,4 +1,5 @@
 # ![NodeBB](public/images/sm-card.png)
+Members: Eunice Lee, Elizabeth Terveen, Sarah Cross
 
 [![Workflow](https://github.com/CMU-313/NodeBB/actions/workflows/test.yaml/badge.svg)](https://github.com/CMU-313/NodeBB/actions/workflows/test.yaml)
 [![Coverage Status](https://coveralls.io/repos/github/CMU-313/NodeBB/badge.svg)](https://coveralls.io/github/CMU-313/NodeBB)
