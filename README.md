@@ -1,3 +1,22 @@
+# Plugins 
+
+Working on implementing roles / privileges feature with plugins. Some useful resources. 
+
+general info about plugins (not super useful for knowing how to write a plugin, but does have good stuff on installation) 
+https://docs.nodebb.org/development/plugins/
+
+available hoooks (methods you can call from a plugin) 
+https://github.com/NodeBB/NodeBB/wiki/Hooks/
+
+Example plugin repos 
+https://github.com/jiangcaiyang/nodebb-plugin-qtdream-homepage/blob/master/library.js
+https://github.com/nodebb/nodebb-plugin-quickstart
+
+
+Dealing with symlink permissions denied error when running "npm link"
+https://stackoverflow.com/questions/75930769/i-am-trying-to-run-npm-link-in-my-terminal-and-i-keep-getting-an-error
+
+
 # ![NodeBB](public/images/sm-card.png)
 
 [![Workflow](https://github.com/CMU-313/NodeBB/actions/workflows/test.yaml/badge.svg)](https://github.com/CMU-313/NodeBB/actions/workflows/test.yaml)
