@@ -1,0 +1,13 @@
+{
+    "name": "nodebb-plugin-course-specific-privileges",
+    "version": "0.0.0",
+    "description": "Attempt to refactor course privileges functionality into plugin form",
+    "main": "library.js",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/CMU-313/nodebb-s25-speee"
+    },
+    "nbbpm": {
+      "compatibility": "^3.2.0"
+    }
+  }
