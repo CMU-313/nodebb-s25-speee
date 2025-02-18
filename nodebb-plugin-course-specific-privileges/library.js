@@ -21,9 +21,13 @@ plugin.init = async (params) =>{
 
 plugin.intializePrivs = async (privsData) => {
     /* initalize global privileges iwth new information */
-    console.log('intializing privileges \n');
-    console.log(JSON.stringify(privsData));
-    await controllers.intializePrivs(privsData);
+    // console.log('intializing privileges \n');
+    // console.log(JSON.stringify(privsData));
+    await controllers.initializeCoursePrivileges(privsData);
 }
+
+// plugin.listGroupPrivs = async (privsData) => {
+//     console.log(JSON.stringify(privsData));
+// }
 
 module.exports = plugin;

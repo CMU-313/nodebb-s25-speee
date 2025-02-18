@@ -127,6 +127,8 @@ helpers.getUserPrivileges = async function (cid, userPrivileges) {
 };
 
 helpers.getGroupPrivileges = async function (cid, groupPrivileges) {
+	console.log("gettingGroupPrivileges");
+	console.log(groupPrivileges);
 	const [memberSets, allGroupNames] = await Promise.all([
 		groups.getMembersOfGroups(groupPrivileges.map(privilege => `cid:${cid}:privileges:${privilege}`)),
 		groups.getGroups('groups:createtime', 0, -1),
@@ -142,6 +144,7 @@ helpers.getGroupPrivileges = async function (cid, groupPrivileges) {
 	moveToFront(groupNames, 'unverified-users');
 	moveToFront(groupNames, 'verified-users');
 	moveToFront(groupNames, 'registered-users');
+	
 
 	const adminIndex = groupNames.indexOf('administrators');
 	if (adminIndex !== -1) {
