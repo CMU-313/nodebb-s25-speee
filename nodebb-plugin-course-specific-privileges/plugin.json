@@ -4,8 +4,8 @@
 	"library": "./library.js",
 	"hooks": [
 		{ "hook": "static:app.load", "method": "init" },
-		{"hook" : "static:privileges.global.init","method":"intializePrivs"},
-		{"hook":"static:privileges.categories.init","method":"intializePrivs"}
+		{ "hook" : "static:privileges.global.init","method":"intializePrivs"},
+		{ "hook":"static:privileges.categories.init","method":"intializePrivs"}
 
 	],
 	"scripts": [
