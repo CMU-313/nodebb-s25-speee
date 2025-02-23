@@ -73,3 +73,6 @@ test.sh
 
 .docker/**
 !**/.gitkeep
+
+#plugin testing 
+/nodebb-plugin-quickstart
