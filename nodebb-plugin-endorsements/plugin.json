@@ -5,7 +5,14 @@
 	"hooks": [
 		{ "hook": "static:app.load", "method": "init" },
 		{ "hook": "static:api.routes", "method": "addRoutes" },
-		{ "hook": "filter:admin.header.build", "method": "addAdminNavigation" }
+		{ "hook": "filter:admin.header.build", "method": "addAdminNavigation" },
+		{ "hook": "filter:post.create", "method": "initializeEndorsements"}
 	],
-	"templates": "templates"
+	"templates": "templates",
+	"scripts": [
+		"public/lib/posts.js"
+	],
+	"modules": {
+		"../forum/views/endorsements.js": "./public/lib/handleButton.js"
+	}
 }

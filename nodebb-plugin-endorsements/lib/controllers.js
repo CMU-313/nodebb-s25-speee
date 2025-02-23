@@ -1,20 +1,23 @@
+/**
+ * Convention seems to be that this handles 
+ * rendering templates.
+ */
+
 'use strict';
 
 const Controllers = module.exports;
 
-Controllers.renderAdminPage = function (req, res/* , next */) {
-	/*
-		Make sure the route matches your path to template exactly.
+Controllers.renderButton = function (req, res/* , next */) {
+    /** handle the implementation of rendering a button 
+     * when the corresponding route is called from the library
+     * of the plugin */
+	
+    res.render('templates/path/to/button.tpl'), {title: "Enodorsement Button"};
+};
 
-		If your route was:
-			myforum.com/some/complex/route
-		your template should be:
-			templates/some/complex/route.tpl
-		and you would render it like so:
-			res.render('some/complex/route');
-	*/
-
-	res.render('admin/plugins/quickstart', {
-		title: 'Quick Start',
-	});
+Controllers.initEnodrsementStatus = function(req, res) {
+    /** listens to the hook for post creation
+     *  upon this event, sets post fields to include 
+     *  endorsements, which should be false
+     */
 };
