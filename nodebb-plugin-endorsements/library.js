@@ -42,4 +42,8 @@ plugin.initializeEndorsements = async (params) => {
 	console.log("hooking into the post initalization function and attempting to initialize endorsement field for posts.\n");
 	console.log(params);
 	controllers.initEnodrsementStatus(params);
-}
+	/** need to pass on the params, otherwise won't be able to intialize the post */
+	return params;
+};
+
+module.exports = plugin;

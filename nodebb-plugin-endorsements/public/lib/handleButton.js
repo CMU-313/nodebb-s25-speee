@@ -15,7 +15,7 @@
  */
 
 export function init(){
-    console.log("attempted to intialize a handleButton Module");
+    console.log("attempted to intialize a handleButton Module \n");
     receiveEndorsement();
 }
 
