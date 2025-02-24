@@ -47,6 +47,7 @@ module.exports = function (Posts) {
 			postData.handle = data.handle;
 		}
 
+		console.log("Creating post: ", postData);
 		let result = await plugins.hooks.fire('filter:post.create', { post: postData, data: data });
 		postData = result.post;
 		

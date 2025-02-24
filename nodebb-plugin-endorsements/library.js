@@ -42,14 +42,14 @@ plugin.initializeEndorsements = async (params) => {
 	console.log("hooking into the post initalization functio. \n");
 	console.log(params);
 	/** asynchronlously update endorsement status */
-	controllers.initEnodrsementStatus(params.post);
+	controllers.initEndorsementStatus(params.post);
 
 	/** need to pass on the params, otherwise won't be able to intialize the post */
 	return params;
 };
 
 
-plugin.updateEnodrsementStatus = async function(postData)
+plugin.updateEndorsementStatus = async function(postData)
 {
     /* 
 	upon receiving an endorsement, a post should be marked as endorsed

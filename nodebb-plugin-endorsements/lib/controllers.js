@@ -17,7 +17,7 @@ Controllers.renderButton = function (req, res/* , next */) {
     res.render('templates/path/to/button.tpl'), {title: "Enodorsement Button"};
 };
 
-Controllers.initEnodrsementStatus = async function(postData) {
+Controllers.initEndorsementStatus = async function(postData) {
     /** listens to the hook for post creation.
      *  upon this event, wait for the post to be initalized.
      *  then, update the post fields to include the endorsements field.
@@ -25,6 +25,7 @@ Controllers.initEnodrsementStatus = async function(postData) {
 
     /* wait for the post to intialize in the db */
     await NodeBB.db.setObject(`post:${postData.pid}`, postData);
+    console.log("Adding endorsement status info:", postData, postData.pid);
     /* by default, a post is not endorsed */
     await NodeBB.posts.setPostFields(postData.pid,{'endorsed':false});
     console.log(postData.pid);
