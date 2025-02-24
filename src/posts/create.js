@@ -49,6 +49,7 @@ module.exports = function (Posts) {
 
 		let result = await plugins.hooks.fire('filter:post.create', { post: postData, data: data });
 		postData = result.post;
+		
 		await db.setObject(`post:${postData.pid}`, postData);
 
 		const topicData = await topics.getTopicFields(tid, ['cid', 'pinned']);
@@ -67,6 +68,10 @@ module.exports = function (Posts) {
 
 		result = await plugins.hooks.fire('filter:post.get', { post: postData, uid: data.uid });
 		result.post.isMain = isMain;
+
+		console.log("postCreationData \n");
+		console.log(result.post);
+
 		plugins.hooks.fire('action:post.save', { post: _.clone(result.post) });
 		return result.post;
 	};

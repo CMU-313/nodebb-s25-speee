@@ -5,6 +5,8 @@
 
 'use strict';
 
+const NodeBB = require("./nodebb");
+
 const Controllers = module.exports;
 
 Controllers.renderButton = function (req, res/* , next */) {
@@ -15,9 +17,17 @@ Controllers.renderButton = function (req, res/* , next */) {
     res.render('templates/path/to/button.tpl'), {title: "Enodorsement Button"};
 };
 
-Controllers.initEnodrsementStatus = function(req, res) {
-    /** listens to the hook for post creation
-     *  upon this event, sets post fields to include 
-     *  endorsements, which should be false
+Controllers.initEnodrsementStatus = async function(postData) {
+    /** listens to the hook for post creation.
+     *  upon this event, wait for the post to be initalized.
+     *  then, update the post fields to include the endorsements field.
      */
+    
+    /* wait for the post to intialize in the db */
+    await NodeBB.db.setObject(`post:${postData.pid}`, postData);
+    /* by default, a post is not endorsed */
+    await NodeBB.posts.setPostFields(postData.pid,{'endorsed':false});
+    console.log(postData.pid);
+
+
 };
