@@ -9,7 +9,3 @@ function renderPost(req, res/* , next */) {
 };
 
 
-function updateEnodrsementStatus() {
-    /* upon receiving an endorsement, a post should be marked as endorsed
-       in the database  */
-};

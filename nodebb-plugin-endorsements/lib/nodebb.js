@@ -7,5 +7,6 @@ module.exports = {
 	winston: require.main.require('winston'),
 	nconf: require.main.require('nconf'),
 	routeHelpers: require.main.require('./src/routes/helpers'),
-	posts: require.main.require('./src/posts')
+	posts: require.main.require('./src/posts'),
+	plugins: require.main.require('./src/plugins')
 };

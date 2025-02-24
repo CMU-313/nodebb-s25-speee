@@ -22,12 +22,17 @@ Controllers.initEnodrsementStatus = async function(postData) {
      *  upon this event, wait for the post to be initalized.
      *  then, update the post fields to include the endorsements field.
      */
-    
+
     /* wait for the post to intialize in the db */
     await NodeBB.db.setObject(`post:${postData.pid}`, postData);
     /* by default, a post is not endorsed */
     await NodeBB.posts.setPostFields(postData.pid,{'endorsed':false});
     console.log(postData.pid);
 
+};
 
+Controllers.updateEndorsementStatus = async function(postData) {
+    /** TO-DO: error handeling? */
+    /* update post endorsement status */
+    await NodeBB.posts.setPostFields(postData.pid,{'endorsed':true});
 };

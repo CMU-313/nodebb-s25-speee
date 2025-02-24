@@ -48,4 +48,14 @@ plugin.initializeEndorsements = async (params) => {
 	return params;
 };
 
+
+plugin.updateEnodrsementStatus = async function(postData)
+{
+    /* 
+	upon receiving an endorsement, a post should be marked as endorsed
+    in the database  
+	*/
+	controllers.updateEndorsementStatus(postData);
+};
+
 module.exports = plugin;
