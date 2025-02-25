@@ -21,11 +21,10 @@ export function init(){
 
 
 async function receiveEndorsement() {
-    $("#button").on("click",function(){
+    $("#endorsement-button").on("click",function(){
         console.log("button was clicked!\n");
         /** call controlllers functions */
         plugins.hooks.fire('filter:endorsements.updateEndorsementStatus',{postData: {}});
     });
-
 }
 

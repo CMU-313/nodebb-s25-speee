@@ -27,7 +27,7 @@ Controllers.initEndorsementStatus = async function(postData) {
     await NodeBB.db.setObject(`post:${postData.pid}`, postData);
     console.log("Adding endorsement status info:", postData, postData.pid);
     /* by default, a post is not endorsed */
-    await NodeBB.posts.setPostFields(postData.pid,{'endorsed':false});
+    await NodeBB.posts.setPostField(postData.pid, 'endorsed', false);
     console.log(postData.pid);
 
 };
