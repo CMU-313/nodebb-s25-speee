@@ -6,7 +6,8 @@
 		{ "hook": "static:app.load", "method": "init" },
 		{ "hook": "static:api.routes", "method": "addRoutes" },
 		{ "hook": "filter:admin.header.build", "method": "addAdminNavigation" },
-		{ "hook": "filter:post.create", "method": "initializeEndorsements"}
+		{ "hook": "filter:post.create", "method": "initializeEndorsements"},
+		{"hook": "filter:topic.thread_tools", "method": "buildTools"}
 	],
 	"templates": "templates",
 	"scripts": [

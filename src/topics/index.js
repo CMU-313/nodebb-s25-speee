@@ -185,6 +185,8 @@ Topics.getTopicWithPosts = async function (topicData, set, uid, start, stop, rev
 		Topics.events.get(topicData.tid, uid, reverse),
 	]);
 
+	// console.log(threadTools);
+
 	topicData.thumbs = thumbs[0];
 	topicData.posts = posts;
 	topicData.events = events;

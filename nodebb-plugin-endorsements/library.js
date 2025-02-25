@@ -58,4 +58,18 @@ plugin.updateEnodrsementStatus = async function(postData)
 	controllers.updateEndorsementStatus(postData);
 };
 
+plugin.buildPostTools = function(postData) {
+	console.log(postData);
+	return postData;
+}
+
+plugin.buildTools = function(threadData) {
+	/** alternative method for future implementations
+	 *  If modifying harmony theme templates is too brittle
+	 *  we could listen for the post to be loaded and add a class displaying whether its endorsed
+	 *  not sure if this class would persist across loads tho
+	 */
+	console.log(threadData);
+	return threadData;
+}
 module.exports = plugin;

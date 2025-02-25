@@ -12,7 +12,7 @@ const cache = require('../cache');
 
 module.exports = function (Categories) {
 	Categories.create = async function (data) {
-		console.log("calling create categories \n");
+		// console.log("calling create categories \n");
 		const parentCid = data.parentCid ? data.parentCid : 0;
 		const [cid, firstChild] = await Promise.all([
 			db.incrObjectField('global', 'nextCid'),

@@ -69,8 +69,8 @@ module.exports = function (Posts) {
 		result = await plugins.hooks.fire('filter:post.get', { post: postData, uid: data.uid });
 		result.post.isMain = isMain;
 
-		console.log("postCreationData \n");
-		console.log(result.post);
+		// console.log("postCreationData \n");
+		// console.log(result.post);
 
 		plugins.hooks.fire('action:post.save', { post: _.clone(result.post) });
 		return result.post;

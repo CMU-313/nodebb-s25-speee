@@ -127,8 +127,8 @@ helpers.getUserPrivileges = async function (cid, userPrivileges) {
 };
 
 helpers.getGroupPrivileges = async function (cid, groupPrivileges) {
-	console.log("gettingGroupPrivileges");
-	console.log(groupPrivileges);
+	// console.log("gettingGroupPrivileges");
+	// console.log(groupPrivileges);
 	const [memberSets, allGroupNames] = await Promise.all([
 		groups.getMembersOfGroups(groupPrivileges.map(privilege => `cid:${cid}:privileges:${privilege}`)),
 		groups.getGroups('groups:createtime', 0, -1),

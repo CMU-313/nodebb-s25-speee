@@ -635,6 +635,37 @@ describe('Topic\'s', () => {
 		});
 	});
 
+	describe('tools/endorse/intialize',() => {
+		it('should have initialized a topic as not endorsed', async () => {
+			//not impelmented
+			// await apiTopics.create({ uid: 1 }, 1);
+			// const endorsed = await topics.getTopicField(newTopic.tid, 'endorsed');
+			assert.strictEqual(1, 0);
+		});
+	});
+
+
+	describe('tools/endorse/update',() => {
+		it('should update the topics endorsement status upon click', async () => {
+			// not yet implemented !
+			// const pluginAPI = {} /** NEED TO IMPLEMENT THIS!! */
+			// await pluginAPI.endorse({ uid: adminUid }, { tids: [newTopic.tid], cid: categoryObj.cid });
+			// const endorsed = await topics.getTopicField(newTopic.tid, 'endorsed');
+			assert.strictEqual(0, 1);
+		});
+
+		it('should not change a post that is already endorsed', async () => {
+			// not implemented
+			assert.strictEqual(0, 1);
+		});
+
+		it('should restrict endorsements to the correct permissions scopes', async () => {
+			// not implemented
+			assert.strictEqual(0, 1);
+		});
+
+	});
+
 	describe('tools/delete/restore/purge', () => {
 		let newTopic;
 		let followerUid;

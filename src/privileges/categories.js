@@ -72,7 +72,7 @@ privsCategories.getPrivilegesByFilter = function (filter) {
 
 // Method used in admin/category controller to show all users/groups with privs in that given cid
 privsCategories.list = async function (cid) {
-	console.log("privsCategories.list")
+	// console.log("privsCategories.list")
 	let labels = Array.from(_privilegeMap.values()).map(data => data.label);
 	labels = await utils.promiseParallel({
 		users: plugins.hooks.fire('filter:privileges.list_human', labels.slice()),

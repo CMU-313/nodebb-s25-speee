@@ -134,7 +134,7 @@ privsAdmin.resolve = (path) => {
 };
 
 privsAdmin.list = async function (uid) {
-	console.log("privsAdminList \n");
+	// console.log("privsAdminList \n");
 	const privilegeLabels = Array.from(_privilegeMap.values()).map(data => data.label);
 	const userPrivilegeList = await privsAdmin.getUserPrivilegeList();
 	const groupPrivilegeList = await privsAdmin.getGroupPrivilegeList();
