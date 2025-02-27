@@ -76,3 +76,5 @@ test.sh
 
 #plugin testing 
 /nodebb-plugin-quickstart
+
+*.rdb
