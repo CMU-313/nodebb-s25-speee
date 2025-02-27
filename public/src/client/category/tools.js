@@ -128,6 +128,11 @@ define('forum/category/tools', [
 			});
 		});
 
+		components.get('topic/endorse').on('click', function () {
+			categoryCommand('put', '/endorse', 'endorse', onCommandComplete);
+			return false;
+		});
+
 		CategoryTools.removeListeners();
 		socket.on('event:topic_deleted', setDeleteState);
 		socket.on('event:topic_restored', setDeleteState);
@@ -137,6 +142,7 @@ define('forum/category/tools', [
 		socket.on('event:topic_pinned', setPinnedState);
 		socket.on('event:topic_unpinned', setPinnedState);
 		socket.on('event:topic_moved', onTopicMoved);
+		socket.on('event:topic_endorsed', onTopicMoved);
 	};
 
 	function categoryCommand(method, path, command, onComplete) {

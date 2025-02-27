@@ -464,6 +464,8 @@ describe('Topic\'s', () => {
 				assert.equal(data.deleted, false);
 				assert.equal(data.locked, false);
 				assert.equal(data.pinned, false);
+				// endorsement assertion
+				assert.equal(data.endorsed, false);
 			});
 
 			it('should return first 3 posts including main post', async () => {
@@ -616,6 +618,11 @@ describe('Topic\'s', () => {
 					assert.strictEqual(postsData[i].content, `topic reply ${i}`);
 				}
 			});
+
+			it('should return most recently endorsed topics/posts', async () => {
+				// Sara & Elizabeth
+			});
+
 		});
 	});
 
@@ -730,6 +737,14 @@ describe('Topic\'s', () => {
 			const pinned = await topics.getTopicField(newTopic.tid, 'pinned');
 			assert.strictEqual(pinned, 0);
 		});
+
+		// endorsement validation
+		it('should endorse topic', async () => {
+			await apiTopics.endorse({ uid: adminUid }, { tids: [newTopic.tid], cid: categoryObj.cid });
+			const endorsed = await topics.getTopicField(newTopic.tid, 'endorsed');
+			assert.strictEqual(endorsed, 1);
+		});
+
 
 		it('should move all topics', (done) => {
 			socketTopics.moveAll({ uid: adminUid }, { cid: moveCid, currentCid: categoryObj.cid }, (err) => {

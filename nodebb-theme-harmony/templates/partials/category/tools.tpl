@@ -40,17 +40,14 @@
 				<i class="fa fa-fw fa-arrows text-secondary"></i> [[topic:thread-tools.move]]
 			</a>
 		</li>
-		<li>
-			<a component="topic/endorse" href="#" class="dropdown-item rounded-1 d-flex align-items-center gap-2" role="menuitem">
-				<i class="fa fa-fw fa-lock text-secondary"></i> [[topic:thread-tools.endorse]]
-			</a>
-		</li>
+
 		{{{if template.category}}}
 		<li>
 			<a component="topic/move-all" href="#" class="dropdown-item rounded-1 d-flex align-items-center gap-2" role="menuitem">
 				<i class="fa fa-fw fa-arrows text-secondary"></i> [[topic:thread-tools.move-all]]
 			</a>
 		</li>
+
 		{{{end}}}
 		<li>
 			<a component="topic/merge" href="#" class="dropdown-item rounded-1 d-flex align-items-center gap-2" role="menuitem">
@@ -61,6 +58,13 @@
 		<li>
 			<a component="topic/tag" href="#" class="dropdown-item rounded-1 d-flex align-items-center gap-2" role="menuitem">
 				<i class="fa fa-fw fa-tag text-secondary"></i> [[topic:thread-tools.tag]]
+			</a>
+			
+		</li>
+
+		<li>
+			<a component="topic/endorse" href="#" class="dropdown-item rounded-1 d-flex align-items-center gap-2" role="menuitem">
+				<i class="fa fa-fw fa-arrows text-secondary"></i> [[topic:thread-tools.endorse]]
 			</a>
 		</li>
 

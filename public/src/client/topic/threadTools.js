@@ -121,6 +121,12 @@ define('forum/topic/threadTools', [
 			});
 		});
 
+		topicContainer.on('click', '[component="topic/endorse"]', function () {
+			require(['forum/topic/endorse'], function (endorse) {
+				endorse.init();
+			});
+		});
+
 		topicContainer.on('click', '[component="topic/merge"]', function () {
 			require(['forum/topic/merge'], function (merge) {
 				merge.init(function () {
@@ -217,7 +223,7 @@ define('forum/topic/threadTools', [
 			if (dropdownMenu.attr('data-loaded')) {
 				return;
 			}
-			dropdownMenu.html(helpers.generatePlaceholderWave([8, 8, 8]));
+			dropdownMenu.html(helpers.generatePlaceholderWave([9, 9, 9]));
 			const data = await socket.emit('topics.loadTopicTools', { tid: ajaxify.data.tid, cid: ajaxify.data.cid });
 			const html = await app.parseAndTranslate('partials/topic/topic-menu-list', data);
 			$(dropdownMenu).attr('data-loaded', 'true').html(html);
