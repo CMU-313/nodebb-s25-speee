@@ -12,7 +12,7 @@
 	"scripts": [
 		"public/lib/posts.js"
 	],
-	"modules": {
-		"../forum/views/endorsements.js": "./public/lib/handleButton.js"
-	}
+	"scss": [
+		"public/style.scss"
+	]
 }

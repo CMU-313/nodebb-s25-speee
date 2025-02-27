@@ -2,22 +2,73 @@
 
 /** user defined collection of nodebb modules that are relevant */
 const NodeBB = require('./lib/nodebb');
-// const winston = require.main.require('winston');
 
-// const meta = require.main.require('./src/meta');
+const nconf = require.main.require('nconf');
+const winston = require.main.require('winston');
 
-const controllers = require('./lib/controllers');
+const meta = require.main.require('./src/meta');
 
-// const routeHelpers = require.main.require('./src/routes/helpers');
+const routeHelpers = require.main.require('./src/routes/helpers');
 
 const plugin = {};
+
+plugin.init = async (params) => {
+	const { router /* , middleware , controllers */ } = params;
+
+	// Settings saved in the plugin settings can be retrieved via settings methods
+	const { setting1, setting2 } = await meta.settings.get('endorsement');
+	if (setting1) {
+		console.log(setting2);
+	}
+
+	/**
+	 * We create two routes for every view. One API call, and the actual route itself.
+	 * Use the `setupPageRoute` helper and NodeBB will take care of everything for you.
+	 *
+	 * Other helpers include `setupAdminPageRoute` and `setupAPIRoute`
+	 * */
+	routeHelpers.setupPageRoute(router, '/endorse', [(req, res, next) => {
+		winston.info(`[plugins/nodebb-plugin-endorsements] In middleware. This argument can be either a single middleware or an array of middlewares`);
+		setImmediate(next);
+	}], (req, res) => {
+		winston.info(`[plugins/nodebb-plugin-endorsements] Navigated to ${nconf.get('relative_path')}/endorse`);
+		res.render('endorse', { uid: req.uid });
+	});
+
+	// routeHelpers.setupAdminPageRoute(router, '/admin/plugins/endorse', controllers.renderAdminPage);
+};
+
+plugin.addRoutes = async ({ router, middleware, helpers }) => {
+	const middlewares = [
+		middleware.ensureLoggedIn,			// use this if you want only registered users to call this route
+		middleware.admin.checkPrivileges,	// use this to restrict the route to administrators
+	];
+
+	routeHelpers.setupApiRoute(router, 'get', '/endorse/:pid', middlewares, (req, res) => {
+		console.log("Endorsing: ", req.params);
+		// Get this PID + endorse it
+		helpers.formatApiResponse(200, res, {
+			pid: req.params.pid,
+		});
+	});
+};
+
+plugin.addAdminNavigation = (header) => {
+	header.plugins.push({
+		route: '/plugins/endorse',
+		icon: 'fa-tint',
+		name: 'Endorsement',
+	});
+
+	return header;
+};
 
 plugin.init = async (params) => {
     console.log("hooking in to the app intialization function");
 	const { router /* , middleware , controllers */ } = params;
 
 	// Settings saved in the plugin settings can be retrieved via settings methods
-	const { setting1, setting2 } = await NodeBB.meta.settings.get('quickstart');
+	const { setting1, setting2 } = await NodeBB.meta.settings.get('endorsements');
     // console.log(settings1);
 	if (setting1) {
 		console.log(setting2);
@@ -27,7 +78,7 @@ plugin.init = async (params) => {
 	 * We create two routes for every view. One API call, and the actual route itself.
 	 * Use the `setupPageRoute` helper and NodeBB will take care of everything for you.
 	 * */
-	NodeBB.routeHelpers.setupPageRoute(router, '/posts/endorsements', [(req, res, next) => {
+	NodeBB.routeHelpers.setupApiRoute(router, 'get', '/endorse/:pid', [(req, res, next) => {
 		NodeBB.winston.info(`[plugins/posts/endorsements] In middleware. This argument can be either a single middleware or an array of middlewares`);
 		setImmediate(next);
 	}], (req, res) => {
@@ -35,14 +86,13 @@ plugin.init = async (params) => {
 		res.render('endorsements', { uid: req.uid });
 	});
 
-
 };
 
 plugin.initializeEndorsements = async (params) => {
 	console.log("hooking into the post initalization functio. \n");
 	console.log(params);
 	/** asynchronlously update endorsement status */
-	controllers.initEndorsementStatus(params.post);
+	// await NodeBB.posts.setPostFields(params.post.pid, {'endorsed':true});
 
 	/** need to pass on the params, otherwise won't be able to intialize the post */
 	return params;
@@ -55,7 +105,8 @@ plugin.updateEndorsementStatus = async function(postData)
 	upon receiving an endorsement, a post should be marked as endorsed
     in the database  
 	*/
-	controllers.updateEndorsementStatus(postData);
+	console.log("Updating endorsement status:", postData);
+	await NodeBB.posts.setPostFields(postData.post.pid, {'endorsed':true});
 };
 
 module.exports = plugin;

@@ -61,11 +61,6 @@
 
 		<div class="content mt-2 text-break" component="post/content" itemprop="text">
 			{posts.content}
-            {{{ if posts.endorsed }}}
-			<div>Post endorsed!!!</div>
-			{{{ else }}}
-			<div>Post NOT endorsed</div>
-			{{{ end }}}
 		</div>
 	</div>
 </div>
@@ -97,30 +92,37 @@
 
 	<div component="post/replies/container" class="my-2 col-11 border rounded-1 p-3 hidden-empty"></div>
 
-	<div component="post/actions" class="d-flex justify-content-end gap-1 post-tools">
-		<!-- IMPORT partials/topic/reactions.tpl -->
-		<a component="post/reply" href="#" class="btn-ghost-sm {{{ if !privileges.topics:reply }}}hidden{{{ end }}}" title="[[topic:reply]]"><i class="fa fa-fw fa-reply text-primary"></i></a>
-		<a component="post/quote" href="#" class="btn-ghost-sm {{{ if !privileges.topics:reply }}}hidden{{{ end }}}" title="[[topic:quote]]"><i class="fa fa-fw fa-quote-right text-primary"></i></a>
-
-		{{{ if !reputation:disabled }}}
-		<div class="d-flex votes align-items-center">
-			<a component="post/upvote" href="#" class="btn-ghost-sm{{{ if posts.upvoted }}} upvoted{{{ end }}}" title="[[topic:upvote-post]]">
-				<i class="fa fa-fw fa-chevron-up text-primary"></i>
-			</a>
-
-			<meta itemprop="upvoteCount" content="{posts.upvotes}">
-			<meta itemprop="downvoteCount" content="{posts.downvotes}">
-			<a href="#" class="px-2 mx-1 btn-ghost-sm" component="post/vote-count" data-votes="{posts.votes}" title="[[global:voters]]">{posts.votes}</a>
-
-			{{{ if !downvote:disabled }}}
-			<a component="post/downvote" href="#" class="btn-ghost-sm{{{ if posts.downvoted }}} downvoted{{{ end }}}" title="[[topic:downvote-post]]">
-				<i class="fa fa-fw fa-chevron-down text-primary"></i>
-			</a>
-			{{{ end }}}
-		</div>
+	<div class="d-flex justify-content-end gap-1">
+		{{{ if posts.endorsed }}}
+		<div class="endorsed-text"><i class="fa-solid fa-thumbs-up text-success"></i> Post endorsed by {posts.endorsed}</div>
 		{{{ end }}}
+		
+		<div component="post/actions" class="d-flex justify-content-end gap-1 post-tools flex-grow-1">
+			<button id="endorsement-button">Endorse Post</button>
+			<!-- IMPORT partials/topic/reactions.tpl -->
+			<a component="post/reply" href="#" class="btn-ghost-sm {{{ if !privileges.topics:reply }}}hidden{{{ end }}}" title="[[topic:reply]]"><i class="fa fa-fw fa-reply text-primary"></i></a>
+			<a component="post/quote" href="#" class="btn-ghost-sm {{{ if !privileges.topics:reply }}}hidden{{{ end }}}" title="[[topic:quote]]"><i class="fa fa-fw fa-quote-right text-primary"></i></a>
 
-		<!-- IMPORT partials/topic/post-menu.tpl -->
+			{{{ if !reputation:disabled }}}
+			<div class="d-flex votes align-items-center">
+				<a component="post/upvote" href="#" class="btn-ghost-sm{{{ if posts.upvoted }}} upvoted{{{ end }}}" title="[[topic:upvote-post]]">
+					<i class="fa fa-fw fa-chevron-up text-primary"></i>
+				</a>
+
+				<meta itemprop="upvoteCount" content="{posts.upvotes}">
+				<meta itemprop="downvoteCount" content="{posts.downvotes}">
+				<a href="#" class="px-2 mx-1 btn-ghost-sm" component="post/vote-count" data-votes="{posts.votes}" title="[[global:voters]]">{posts.votes}</a>
+
+				{{{ if !downvote:disabled }}}
+				<a component="post/downvote" href="#" class="btn-ghost-sm{{{ if posts.downvoted }}} downvoted{{{ end }}}" title="[[topic:downvote-post]]">
+					<i class="fa fa-fw fa-chevron-down text-primary"></i>
+				</a>
+				{{{ end }}}
+			</div>
+			{{{ end }}}
+
+			<!-- IMPORT partials/topic/post-menu.tpl -->
+		</div>
 	</div>
 </div>
 {{{ if (!./index && widgets.mainpost-footer.length) }}}
