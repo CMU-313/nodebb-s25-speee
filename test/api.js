@@ -583,6 +583,10 @@ describe('API', async () => {
 	}
 
 	function compare(schema, response, method, path, context) {
+		// console.log(`comparing method: ${method} |  with path: ${path} `)
+		// console.log(JSON.stringify(context));
+		// console.log(JSON.stringify(response));
+		// console.log("\n\n");
 		let required = [];
 		const additionalProperties = schema.hasOwnProperty('additionalProperties');
 
@@ -614,6 +618,10 @@ describe('API', async () => {
 
 		// Compare the schema to the response
 		required.forEach((prop) => {
+			// console.log("\n Schema:\n");
+			// console.log(JSON.stringify(schema));
+			// console.log(JSON.stringify(prop));
+			// console.log(JSON.stringify(response));
 			if (schema.hasOwnProperty(prop)) {
 				assert(response.hasOwnProperty(prop), `"${prop}" is a required property (path: ${method} ${path}, context: ${context})`);
 

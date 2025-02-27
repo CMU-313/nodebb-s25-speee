@@ -51,6 +51,27 @@ module.exports = function (Categories) {
 			category.backgroundImage = data.backgroundImage;
 		}
 
+		// Mods get all privileges, by default
+		// registered-users get a subset of these
+		// privileges:
+		const allPrivileges = [
+			'groups:find',
+			'groups:read',
+			'groups:topics:read',
+			'groups:topics:create',
+			'groups:topics:reply',
+			'groups:topics:tag',
+			'groups:posts:edit',
+			'groups:posts:history',
+			'groups:posts:delete',
+			'groups:posts:upvote',
+			'groups:posts:downvote',
+			'groups:topics:delete',
+			'groups:topics:schedule',
+			'groups:posts:view_deleted',
+			'groups:purge',
+		];
+
 		const defaultPrivileges = [
 			'groups:find',
 			'groups:read',
@@ -66,19 +87,18 @@ module.exports = function (Categories) {
 			'groups:topics:delete',
 			'groups:general:chat' /** added this */
 		];
-		const modPrivileges = defaultPrivileges.concat([
-			'groups:topics:schedule',
-			'groups:posts:view_deleted',
-			'groups:purge',
-		]);
+		const modPrivileges = allPrivileges;
 		const guestPrivileges = ['groups:find', 'groups:read', 'groups:topics:read'];
 
 		const result = await plugins.hooks.fire('filter:category.create', {
 			category: category,
 			data: data,
-			defaultPrivileges: defaultPrivileges,
+			// If defaultPrivileges are specified in categories.json, use that,
+			// otherwise follow defaults
+			defaultPrivileges: data.defaultPrivileges ? data.defaultPrivileges : defaultPrivileges,
 			modPrivileges: modPrivileges,
 			guestPrivileges: guestPrivileges,
+
 		});
 		category = result.category;
 
@@ -93,7 +113,14 @@ module.exports = function (Categories) {
 			['categories:name', 0, `${data.name.slice(0, 200).toLowerCase()}:${category.cid}`],
 		]);
 
+		console.log(`Nodebb SEE updated. Added course admin privilege category: ${result.courseAdminPriv} \n`);
 		await privileges.categories.give(result.defaultPrivileges, category.cid, 'registered-users');
+		// await privileges.categories.give(result.defaultPrivileges, category.cid, ['students','assistant-staff','staff']);
+		// await privileges.categories.give(result.staffPriv, category.cid, 'staff');
+		// await privileges.categories.give(result.studentPriv, category.cid, 'students');
+		// await privileges.categories.give(result.aStaffPriv, category.cid, 'assistant-staff');
+		// await privileges.categories.give(result.courseAdminPriv, category.cid,['administrators', 'Global Moderators']);
+
 		await privileges.categories.give(result.modPrivileges, category.cid, ['administrators', 'Global Moderators']);
 		await privileges.categories.give(result.guestPrivileges, category.cid, ['guests', 'spiders']);
 		// console.log("giving default category privs \n");
