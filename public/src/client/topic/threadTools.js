@@ -61,6 +61,11 @@ define('forum/topic/threadTools', [
 			return false;
 		});
 
+		topicContainer.on('click', '[component="topic/endorse"]', function () {
+			topicCommand('put', '/endorse', 'endorse');
+			return false;
+		});
+
 		topicContainer.on('click', '[component="topic/mark-unread"]', function () {
 			topicCommand('del', '/read', undefined, () => {
 				if (app.previousUrl && !app.previousUrl.match('^/topic')) {
@@ -113,6 +118,12 @@ define('forum/topic/threadTools', [
 		topicContainer.on('click', '[component="topic/fork"]', function () {
 			require(['forum/topic/fork'], function (fork) {
 				fork.init();
+			});
+		});
+
+		topicContainer.on('click', '[component="topic/endorse"]', function () {
+			require(['forum/topic/endorse'], function (endorse) {
+				endorse.init();
 			});
 		});
 
@@ -212,7 +223,7 @@ define('forum/topic/threadTools', [
 			if (dropdownMenu.attr('data-loaded')) {
 				return;
 			}
-			dropdownMenu.html(helpers.generatePlaceholderWave([8, 8, 8]));
+			dropdownMenu.html(helpers.generatePlaceholderWave([9, 9, 9]));
 			const data = await socket.emit('topics.loadTopicTools', { tid: ajaxify.data.tid, cid: ajaxify.data.cid });
 			const html = await app.parseAndTranslate('partials/topic/topic-menu-list', data);
 			$(dropdownMenu).attr('data-loaded', 'true').html(html);

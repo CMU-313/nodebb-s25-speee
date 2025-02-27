@@ -115,6 +115,7 @@
     "thread-tools.purge-confirm": "Are you sure you want to purge this topic?",
     "thread-tools.merge-topics": "Merge Topics",
     "thread-tools.merge": "Merge Topic",
+    "thread-tools.endorse": "Endorse Topic",
     "topic-move-success": "This topic will be moved to \"%1\" shortly. Click here to undo.",
     "topic-move-multiple-success": "These topics will be moved to \"%1\" shortly. Click here to undo.",
     "topic-move-all-success": "All topics will be moved to \"%1\" shortly. Click here to undo.",

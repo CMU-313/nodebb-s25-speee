@@ -48,6 +48,11 @@
 						<i class="fa fa-arrow-circle-right"></i>
 						<span>[[topic:moved]]</span>
 					</span>
+					<span component="topic/endorsed" class="badge border border-gray-300 text-body {{{ if !./oldCid }}}hidden{{{ end }}}">
+						<i class="fa fa-arrow-circle-right"></i>
+						<span>[[topic:endorsed]]</span>
+					</span>
+					
 					{{{each ./icons}}}<span class="lh-1">{@value}</span>{{{end}}}
 
 					{{{ if !template.category }}}
