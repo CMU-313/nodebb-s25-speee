@@ -17,3 +17,10 @@ sudo chown -R `whoami` /usr/local/lib/node_modules
 [source](https://stackoverflow.com/questions/75930769/i-am-trying-to-run-npm-link-in-my-terminal-and-i-keep-getting-an-error).
 
 ## Demo
+
+To view this feature, navigate to a category (e.g. Announcements, General Discussion, etc.) and create a new topic. Navigate to your new topic and select topic tools. 
+![alt text](https://github.com/CMU-313/nodebb-s25-speee/blob/render-endorsement/readme_imgs/img1.png?raw=true)
+Then, select the endorse topic button. 
+![alt text](https://github.com/CMU-313/nodebb-s25-speee/blob/render-endorsement/readme_imgs/img2.png) 
+Finally, the posts endorsement status will be updated to reflect new permissions. 
+![alt text](https://github.com/CMU-313/nodebb-s25-speee/blob/render-endorsement/readme_imgs/img3.png)
