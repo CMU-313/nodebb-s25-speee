@@ -62,7 +62,9 @@ define('forum/topic/threadTools', [
 		});
 
 		topicContainer.on('click', '[component="topic/endorse"]', function () {
-			topicCommand('put', '/endorse', 'endorse');
+			const tid = ajaxify.data.tid;
+			api.put(`/plugins/topic/endorse/${tid}`);
+			// topicCommand('put', '/endorse', 'endorse');
 			return false;
 		});
 

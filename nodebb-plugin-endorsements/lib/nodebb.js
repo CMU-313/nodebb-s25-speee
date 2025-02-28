@@ -8,5 +8,6 @@ module.exports = {
 	nconf: require.main.require('nconf'),
 	routeHelpers: require.main.require('./src/routes/helpers'),
 	posts: require.main.require('./src/posts'),
-	plugins: require.main.require('./src/plugins')
+	plugins: require.main.require('./src/plugins'),
+	topics: require.main.require('./src/topics')
 };

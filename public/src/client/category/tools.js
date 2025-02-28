@@ -129,7 +129,8 @@ define('forum/category/tools', [
 		});
 
 		components.get('topic/endorse').on('click', function () {
-			categoryCommand('put', '/endorse', 'endorse', onCommandComplete);
+			api.put('/plugins/topic/endorse');
+			// categoryCommand('put', '/endorse', 'endorse', onCommandComplete);
 			return false;
 		});
 

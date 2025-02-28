@@ -28,7 +28,7 @@
 					<span class="topic-title" component="topic/title">{title}</span>
 				</h1>
 
-                {{{ if !topic.endorsed }}}
+                {{{ if topic.endorsed }}}
                 <em>
                     <i class="fa fa-fw fa-solid fa-thumbs-up text-secondary"></i> This topic has been endorsed by a staff member or professor.
                 </em>

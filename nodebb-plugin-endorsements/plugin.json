@@ -12,7 +12,7 @@
 	"templates": "templates",
 	"scripts": [
 		"./public/lib/posts.js",
-		 "./public/lib/handleButton.js"
+		"./public/lib/handleButton.js"
 	],
 	"modules": {
 		"../client/endorse.js": "./public/lib/saveEndorsements.js"

@@ -42,14 +42,14 @@ $(document).ready(function () {
     
     console.log("document is ready\n");
 
-    const postEl = $('[component="topic"]');
+    const toolsEl = $('[class="sticky-tools"]');
 
-    if (!postEl.length) {
+    if (!toolsEl.length) {
         return;
     }
 
     require(['client/endorse','api'], function(postTools,api) {
-        postEl.on('show.bs.dropdown', [component="topic"], async function () {
+        $('.menu-itme').on('click', async function () {
             // const toolsEl = $([component="topic"]);
             console.log("plugin registered post tools being clicked!\n");
             // console.log(postTools);
@@ -57,6 +57,7 @@ $(document).ready(function () {
             // console.log(pid);
             // postTools.updateEndorsementStatus(pid);
             await api.get(`/update-endorsement/${pid}`);
+            
         });
 
     });

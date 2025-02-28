@@ -10,6 +10,7 @@ const meta = require.main.require('./src/meta');
 
 const routeHelpers = require.main.require('./src/routes/helpers');
 
+const controllers = require('./lib/controllers')
 const plugin = {};
 
 plugin.init = async (params) => {
@@ -130,8 +131,8 @@ plugin.buildTools = function(threadData) {
 plugin.addRoutes = async({router, middleware, helpers}) => {
 	console.log("adding api routes \n");
 	routeHelpers.setupApiRoute(router, 
-		'get', 
-		'/update-endorsement/:param1', 
+		'put', 
+		'/topic/endorse/:tid', 
 		[], 
 		controllers.updateEndorsementStatus);
 }

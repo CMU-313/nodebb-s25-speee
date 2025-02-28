@@ -32,8 +32,10 @@ Controllers.initEnodrsementStatus = async function(postData) {
 };
 
 Controllers.updateEndorsementStatus = async function(postData) {
+    const tid = postData.params.tid;
     console.log("updating endorsement status \n");
     /** TO-DO: error handeling? */
     /* update post endorsement status */
-    await NodeBB.posts.setPostFields(postData.pid,{'endorsed':true});
+    
+    await NodeBB.topics.setTopicFields(tid,{'endorsed':1});
 };
