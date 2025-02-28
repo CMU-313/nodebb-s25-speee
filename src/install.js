@@ -468,12 +468,6 @@ async function giveGlobalPrivileges() {
 
 async function createCategories() {
 	const Categories = require('./categories');
-	const db = require('./database');
-	const cids = await db.getSortedSetRange('categories:cid', 0, -1);
-	if (Array.isArray(cids) && cids.length) {
-		console.log(`Categories OK. Found ${cids.length} categories.`);
-		return;
-	}
 
 	console.log('No categories found, populating instance with default categories');
 
@@ -482,7 +476,8 @@ async function createCategories() {
 	);
 	for (const categoryData of default_categories) {
 		// eslint-disable-next-line no-await-in-loop
-		await Categories.create(categoryData);
+		console.log('creatingDefaultCategories');
+		Categories.create(categoryData);
 	}
 }
 

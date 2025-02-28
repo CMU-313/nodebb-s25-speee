@@ -1,0 +1,23 @@
+{
+	"id": "nodebb-plugin-quickstart",
+	"url": "https://github.com/CMU-313/nodebb-s25-speee",
+	"library": "./library.js",
+	"hooks": [
+		{ "hook": "static:app.load", "method": "init" },
+		{ "hook": "static:api.routes", "method": "addRoutes" },
+		{ "hook": "filter:admin.header.build", "method": "addAdminNavigation" },
+		{ "hook": "filter:post.create", "method": "initializeEndorsements"},
+		{"hook": "filter:topic.thread_tools", "method": "buildTools"}
+	],
+	"templates": "templates",
+	"scripts": [
+		"./public/lib/posts.js",
+		"./public/lib/handleButton.js"
+	],
+	"modules": {
+		"../client/endorse.js": "./public/lib/saveEndorsements.js"
+	},
+	"scss": [
+		"public/style.scss"
+	]
+}

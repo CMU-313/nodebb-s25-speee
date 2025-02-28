@@ -15,8 +15,7 @@ helpers.setupPageRoute = function (...args) {
 		winston.warn(`[helpers.setupPageRoute(${name})] passing \`middleware\` as the third param is deprecated, it can now be safely removed`);
 	}
 
-	middlewares = [
-		middleware.autoLocale,
+	middlewares = [middleware.autoLocale,
 		middleware.applyBlacklist,
 		middleware.authenticateRequest,
 		middleware.redirectToHomeIfBanned,
