@@ -12,6 +12,7 @@ const cache = require('../cache');
 
 module.exports = function (Categories) {
 	Categories.create = async function (data) {
+		// console.log("calling create categories \n");
 		const parentCid = data.parentCid ? data.parentCid : 0;
 		const [cid, firstChild] = await Promise.all([
 			db.incrObjectField('global', 'nextCid'),
@@ -84,6 +85,7 @@ module.exports = function (Categories) {
 			'groups:posts:upvote',
 			'groups:posts:downvote',
 			'groups:topics:delete',
+			'groups:general:chat', /** added this */
 		];
 		const modPrivileges = allPrivileges;
 		const guestPrivileges = ['groups:find', 'groups:read', 'groups:topics:read'];
@@ -111,7 +113,7 @@ module.exports = function (Categories) {
 			['categories:name', 0, `${data.name.slice(0, 200).toLowerCase()}:${category.cid}`],
 		]);
 
-		console.log(`Nodebb SEE updated. Added course admin privilege category: ${result.courseAdminPriv} \n`);
+		console.log(`Nodebb SEE updated.\n`);
 		await privileges.categories.give(result.defaultPrivileges, category.cid, 'registered-users');
 		// await privileges.categories.give(result.defaultPrivileges, category.cid, ['students','assistant-staff','staff']);
 		// await privileges.categories.give(result.staffPriv, category.cid, 'staff');
@@ -121,6 +123,8 @@ module.exports = function (Categories) {
 
 		await privileges.categories.give(result.modPrivileges, category.cid, ['administrators', 'Global Moderators']);
 		await privileges.categories.give(result.guestPrivileges, category.cid, ['guests', 'spiders']);
+		// console.log("giving default category privs \n");
+		await privileges.categories.give(result.defaultPrivileges, category.cid, ['students', 'staff', 'assistant-staff']);
 
 		cache.del('categories:cid');
 		await clearParentCategoryCache(parentCid);

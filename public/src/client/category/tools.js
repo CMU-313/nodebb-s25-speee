@@ -128,6 +128,12 @@ define('forum/category/tools', [
 			});
 		});
 
+		components.get('topic/endorse').on('click', function () {
+			api.put('/plugins/topic/endorse');
+			// categoryCommand('put', '/endorse', 'endorse', onCommandComplete);
+			return false;
+		});
+
 		CategoryTools.removeListeners();
 		socket.on('event:topic_deleted', setDeleteState);
 		socket.on('event:topic_restored', setDeleteState);
@@ -137,6 +143,7 @@ define('forum/category/tools', [
 		socket.on('event:topic_pinned', setPinnedState);
 		socket.on('event:topic_unpinned', setPinnedState);
 		socket.on('event:topic_moved', onTopicMoved);
+		socket.on('event:topic_endorsed', onTopicEndorsed);
 	};
 
 	function categoryCommand(method, path, command, onComplete) {
@@ -282,6 +289,12 @@ define('forum/category/tools', [
 		const topic = getTopicEl(data.tid);
 		topic.toggleClass('locked', data.isLocked);
 		topic.find('[component="topic/locked"]').toggleClass('hidden', !data.isLocked);
+	}
+
+	// When we endorse the topic, display that we've endorsed it
+	function onTopicEndorsed(data) {
+		const topic = getTopicEl(data.tid);
+		console.log('Topic element: ', topic);
 	}
 
 	function onTopicMoved(data) {

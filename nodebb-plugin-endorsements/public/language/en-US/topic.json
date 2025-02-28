@@ -40,6 +40,7 @@
 	"scheduled": "Scheduled",
 	"deleted": "Deleted",
 	"moved": "Moved",
+	"endorsed": "Endorsed",
 	"moved-from": "Moved from %1",
 	"copy-code": "Copy Code",
 	"copy-ip": "Copy IP",

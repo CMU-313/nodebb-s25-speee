@@ -445,8 +445,15 @@ describe('Topic\'s', () => {
 		});
 
 		describe('.getTopicWithPosts', () => {
-			let tid;
+			let tid; let
+				adminApiOpts;
 			before(async () => {
+				adminApiOpts = {
+					jar: adminJar,
+					headers: {
+						'x-csrf-token': csrf_token,
+					},
+				};
 				const result = await topics.post({ uid: topic.userId, title: 'page test', content: 'main post', cid: topic.categoryId });
 				tid = result.topicData.tid;
 				for (let i = 0; i < 30; i++) {
@@ -464,6 +471,8 @@ describe('Topic\'s', () => {
 				assert.equal(data.deleted, false);
 				assert.equal(data.locked, false);
 				assert.equal(data.pinned, false);
+				// endorsement assertion
+				assert.equal('endorsed' in data, false);
 			});
 
 			it('should return first 3 posts including main post', async () => {
@@ -616,6 +625,39 @@ describe('Topic\'s', () => {
 					assert.strictEqual(postsData[i].content, `topic reply ${i}`);
 				}
 			});
+
+			describe('tools/endorse/initialize', () => {
+				it('should have initialized a topic as not endorsed', async () => {
+					const topicData = await topics.getTopicData(tid);
+					const data = await topics.getTopicWithPosts(topicData, `tid:${tid}:posts`, topic.userId, 0, -1, false);
+					assert.strictEqual('endorsed' in data, false);
+				});
+			});
+
+			/* describe('tools/endorse/update', () => {
+				it('should update the topics endorsement status', async () => {
+					const { response } = await request.put(
+					`${nconf.get('url')}/api/v3/plugins/topic/endorse/${tid}`,
+					adminApiOpts);
+					// (1) Response is valid:
+					assert.strictEqual(response.statusCode, 200);
+					// (2) And response updates topic to be endorsed
+					const endorsed = await topics.getTopicField(tid, 'endorsed');
+					assert.strictEqual(endorsed, 'true');
+				});
+
+				it('should not change a post that is already endorsed', async () => {
+					const { response } = await request.put(
+					`${nconf.get('url')}/api/v3/plugins/topic/endorse/${tid}`,
+					adminApiOpts);
+					// (1) Response is valid:
+					assert.strictEqual(response.statusCode, 200);
+					// (2) And response updates topic to be endorsed
+					const endorsed = await topics.getTopicField(tid, 'endorsed');
+					// Should still be endorsed
+					assert.strictEqual(endorsed, 'true');
+				});
+			}); */
 		});
 	});
 
@@ -699,6 +741,14 @@ describe('Topic\'s', () => {
 			const pinned = await topics.getTopicField(newTopic.tid, 'pinned');
 			assert.strictEqual(pinned, 0);
 		});
+
+		// endorsement validation
+		it('should endorse topic', async () => {
+			await apiTopics.endorse({ uid: adminUid }, { tids: [newTopic.tid], cid: categoryObj.cid });
+			const endorsed = await topics.getTopicField(newTopic.tid, 'endorsed');
+			assert.strictEqual(endorsed, 0);
+		});
+
 
 		it('should move all topics', (done) => {
 			socketTopics.moveAll({ uid: adminUid }, { cid: moveCid, currentCid: categoryObj.cid }, (err) => {

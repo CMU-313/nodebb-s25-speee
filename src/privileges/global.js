@@ -65,7 +65,7 @@ privsGlobal.getPrivilegeList = async () => {
 };
 
 privsGlobal.list = async function () {
-	console.log('listing all global privileges \n');
+	// console.log("privsglobalList\n");
 	async function getLabels() {
 		const labels = Array.from(_privilegeMap.values()).map(data => data.label);
 		return await utils.promiseParallel({
@@ -73,6 +73,8 @@ privsGlobal.list = async function () {
 			groups: plugins.hooks.fire('filter:privileges.global.groups.list_human', labels.slice()),
 		});
 	}
+
+
 
 	const keys = await utils.promiseParallel({
 		users: privsGlobal.getUserPrivilegeList(),
@@ -150,6 +152,7 @@ privsGlobal.userPrivileges = async function (uid) {
 };
 
 privsGlobal.groupPrivileges = async function (groupName) {
+	// console.log("getGroupPrivs \n");
 	const groupPrivilegeList = await privsGlobal.getGroupPrivilegeList();
 	return await helpers.userOrGroupPrivileges(0, groupName, groupPrivilegeList);
 };

@@ -1,0 +1,24 @@
+@include media-breakpoint-up(sm) {
+	body.template-topic {
+		.topic .posts {
+			[component="post"] {
+				[component="post/actions"] {
+					opacity: 0;
+					transition: $transition-fade;
+
+					&:has([aria-expanded="true"]) {
+						opacity: 1;
+					}
+				}
+				[component="post/actions"]:focus-within {
+					opacity: 1;
+				}
+				&:hover {
+					> .post-footer [component="post/actions"] {
+						opacity: 1;
+					}
+				}
+			}
+		}
+	}
+}

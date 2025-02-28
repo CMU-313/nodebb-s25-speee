@@ -141,6 +141,7 @@ define('hooks', [], () => {
 
 	Hooks.fire = (hookName, data) => {
 		const type = hookName.split(':').shift();
+		console.log('Triggering hook: ', type, hookName);
 		let result;
 		switch (type) {
 			case 'filter':
