@@ -11,9 +11,10 @@
 	],
 	"templates": "templates",
 	"scripts": [
-		"public/lib/posts.js"
+		"./public/lib/posts.js",
+		 "./public/lib/handleButton.js"
 	],
 	"modules": {
-		"../forum/views/endorsements.js": "./public/lib/handleButton.js"
+		"../client/endorse.js": "./public/lib/saveEndorsements.js"
 	}
 }

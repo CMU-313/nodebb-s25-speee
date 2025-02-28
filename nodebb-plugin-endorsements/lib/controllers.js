@@ -14,7 +14,7 @@ Controllers.renderButton = function (req, res/* , next */) {
      * when the corresponding route is called from the library
      * of the plugin */
 	
-    res.render('templates/path/to/button.tpl'), {title: "Enodorsement Button"};
+    res.render('/client/topic/postTools'), {title: "Render Endorsement Button"};
 };
 
 Controllers.initEnodrsementStatus = async function(postData) {
@@ -31,8 +31,9 @@ Controllers.initEnodrsementStatus = async function(postData) {
 
 };
 
-Controllers.updateEndorsementStatus = async function(postData) {
+Controllers.updateEndorsementStatus = async function(pid) {
+    console.log("updating endorsement status \n");
     /** TO-DO: error handeling? */
     /* update post endorsement status */
-    await NodeBB.posts.setPostFields(postData.pid,{'endorsed':true});
+    await NodeBB.posts.setPostFields(pid,{'endorsed':true});
 };

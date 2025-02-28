@@ -13,11 +13,13 @@ define('forum/topic/postTools', [
 	'hooks',
 	'helpers',
 ], function (share, navigator, components, translator, votes, api, bootbox, alerts, hooks, helpers) {
+
 	const PostTools = {};
 
 	let staleReplyAnyway = false;
 
 	PostTools.init = function (tid) {
+		// console.log("intializing post tools \n");
 		staleReplyAnyway = false;
 
 		renderMenu();
@@ -37,6 +39,7 @@ define('forum/topic/postTools', [
 			return;
 		}
 		$('[component="topic"]').on('show.bs.dropdown', '[component="post/tools"]', function () {
+			// console.log("this was clicked!!\n");
 			const $this = $(this);
 			const dropdownMenu = $this.find('.dropdown-menu');
 			const { top } = this.getBoundingClientRect();

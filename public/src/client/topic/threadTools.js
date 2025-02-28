@@ -121,11 +121,11 @@ define('forum/topic/threadTools', [
 			});
 		});
 
-		topicContainer.on('click', '[component="topic/endorse"]', function () {
-			require(['forum/topic/endorse'], function (endorse) {
-				endorse.init();
-			});
-		});
+		// topicContainer.on('click', '[component="topic/endorse"]', function () {
+		// 	require(['forum/topic/endorse'], function (endorse) {
+		// 		endorse.init();
+		// 	});
+		// });
 
 		topicContainer.on('click', '[component="topic/merge"]', function () {
 			require(['forum/topic/merge'], function (merge) {

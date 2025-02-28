@@ -8,7 +8,7 @@ const NodeBB = require('./lib/nodebb');
 
 const controllers = require('./lib/controllers');
 
-// const routeHelpers = require.main.require('./src/routes/helpers');
+const routeHelpers = require.main.require('./src/routes/helpers');
 
 const plugin = {};
 
@@ -27,13 +27,10 @@ plugin.init = async (params) => {
 	 * We create two routes for every view. One API call, and the actual route itself.
 	 * Use the `setupPageRoute` helper and NodeBB will take care of everything for you.
 	 * */
-	NodeBB.routeHelpers.setupPageRoute(router, '/posts/endorsements', [(req, res, next) => {
-		NodeBB.winston.info(`[plugins/posts/endorsements] In middleware. This argument can be either a single middleware or an array of middlewares`);
-		setImmediate(next);
-	}], (req, res) => {
-		NodeBB.winston.info(`[plugins/posts/endorsements] Navigated to ${nconf.get('relative_path')}/endorsements`);
-		res.render('endorsements', { uid: req.uid });
-	});
+	NodeBB.routeHelpers.setupPageRoute(router,
+		'/client/topic/postTools',
+		controllers.renderButton, 
+	);
 
 
 };
@@ -59,7 +56,7 @@ plugin.updateEnodrsementStatus = async function(postData)
 };
 
 plugin.buildPostTools = function(postData) {
-	console.log(postData);
+	console.log("attempted to build post tools \n");
 	return postData;
 }
 
@@ -69,7 +66,16 @@ plugin.buildTools = function(threadData) {
 	 *  we could listen for the post to be loaded and add a class displaying whether its endorsed
 	 *  not sure if this class would persist across loads tho
 	 */
-	console.log(threadData);
+	console.log("attempted to buidl topic tools\n");
 	return threadData;
+}
+
+plugin.addRoutes = async({router, middleware, helpers}) => {
+	console.log("adding api routes \n");
+	routeHelpers.setupApiRoute(router, 
+		'get', 
+		'/update-endorsement/:param1', 
+		[], 
+		controllers.updateEndorsementStatus);
 }
 module.exports = plugin;
