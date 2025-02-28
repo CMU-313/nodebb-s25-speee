@@ -31,9 +31,9 @@ Controllers.initEnodrsementStatus = async function(postData) {
 
 };
 
-Controllers.updateEndorsementStatus = async function(pid) {
+Controllers.updateEndorsementStatus = async function(postData) {
     console.log("updating endorsement status \n");
     /** TO-DO: error handeling? */
     /* update post endorsement status */
-    await NodeBB.posts.setPostFields(pid,{'endorsed':true});
+    await NodeBB.posts.setPostFields(postData.pid,{'endorsed':true});
 };

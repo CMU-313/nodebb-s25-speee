@@ -131,7 +131,7 @@ Data.getStaticDirectories = async function (pluginData) {
 	}
 
 	await Promise.all(dirs.map(route => processDir(route)));
-	winston.verbose(`[plugins] found ${Object.keys(staticDirs).length} static directories for ${pluginData.id}`);
+	winston.verbose(`[plugins] found ${Object.keys(staticDirs).length} static directories for ${pluginData.id} (${Object.keys(staticDirs).join(", ")})`);
 	return staticDirs;
 };
 

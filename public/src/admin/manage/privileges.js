@@ -42,7 +42,6 @@ define('admin/manage/privileges', [
 	};
 
 	Privileges.setupPrivilegeTable = function () {
-
 		$('.privilege-table-container').on('change', 'input[type="checkbox"]:not(.checkbox-helper)', function () {
 			const checkboxEl = this;
 			const $checkboxEl = $(this);

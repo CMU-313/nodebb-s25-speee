@@ -16,5 +16,8 @@
 	],
 	"modules": {
 		"../client/endorse.js": "./public/lib/saveEndorsements.js"
-	}
+	},
+	"scss": [
+		"public/style.scss"
+	]
 }

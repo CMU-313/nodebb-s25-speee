@@ -1,13 +1,9 @@
 {
     "name": "nodebb-plugin-endorsements",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "description": "",
     "main": "library.js",
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/CMU-313/nodebb-s25-speee"
-    },
     "nbbpm": {
-      "compatibility": "^3.2.0"
+        "compatibility": "^3.2.0"
     }
-  }
+}
