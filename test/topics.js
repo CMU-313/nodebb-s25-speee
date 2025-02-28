@@ -445,8 +445,14 @@ describe('Topic\'s', () => {
 		});
 
 		describe('.getTopicWithPosts', () => {
-			let tid;
+			let tid, adminApiOpts;
 			before(async () => {
+				adminApiOpts = {
+					jar: adminJar,
+					headers: {
+						'x-csrf-token': csrf_token,
+					},
+				};
 				const result = await topics.post({ uid: topic.userId, title: 'page test', content: 'main post', cid: topic.categoryId });
 				tid = result.topicData.tid;
 				for (let i = 0; i < 30; i++) {
