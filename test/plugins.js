@@ -327,7 +327,7 @@ describe('Plugins', () => {
 	describe('plugin state set in configuration', () => {
 		const activePlugins = [
 			'nodebb-plugin-markdown',
-			'nodebb-plugin-mentions',
+			'nodebb-plugin-mentions'
 		];
 		const inactivePlugin = 'nodebb-plugin-emoji';
 		beforeEach((done) => {
