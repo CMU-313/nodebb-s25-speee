@@ -37,5 +37,5 @@ Controllers.updateEndorsementStatus = async function(postData) {
     /** TO-DO: error handeling? */
     /* update post endorsement status */
     
-    await NodeBB.topics.setTopicFields(tid,{'endorsed':1});
+    await NodeBB.topics.setTopicFields(tid,{'endorsed':true});
 };
