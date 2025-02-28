@@ -635,7 +635,7 @@ describe('Topic\'s', () => {
 
 			describe('tools/endorse/update', () => {
 				it('should update the topics endorsement status', async () => {
-					const { response } = await request.put(`${nconf.get('url')}/api/plugins/topics/endorse/${tid}`, adminApiOpts);
+					const { response } = await request.put(`${nconf.get('url')}/api/plugins/topic/endorse/${tid}${tid}`, adminApiOpts);
 					// (1) Response is valid:
 					assert.strictEqual(response.statusCode, 200);
 					// (2) And response updates topic to be endorsed
@@ -644,7 +644,7 @@ describe('Topic\'s', () => {
 				});
 	
 				it('should not change a post that is already endorsed', async () => {
-					const { response } = await request.put(`${nconf.get('url')}/api/plugins/topics/endorse/${tid}`, adminApiOpts);
+					const { response } = await request.put(`${nconf.get('url')}/api/plugins/topic/endorse/${tid}${tid}`, adminApiOpts);
 					// (1) Response is valid:
 					assert.strictEqual(response.statusCode, 200);
 					// (2) And response updates topic to be endorsed
