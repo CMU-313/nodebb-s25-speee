@@ -13,6 +13,7 @@ If the endorsement button is not rendering:
 4) try ./nodebb reset -a, then ./nodebb build to reset the nodebb instance
 
 Added automated tests 
+https://github.com/CMU-313/nodebb-s25-speee/blob/render-endorsement-button/test/topics.js
 Automated tests can be found in the test/topics.js file, in which we build test into the existing testing framework. 
 In addition to the tests being a part of exisiting functions, the tests include the mocha testing framework which helps with the automated tests. 
 Tests can be run by doing npx mocha test/topics.js
