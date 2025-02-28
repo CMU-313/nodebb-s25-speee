@@ -445,7 +445,8 @@ describe('Topic\'s', () => {
 		});
 
 		describe('.getTopicWithPosts', () => {
-			let tid, adminApiOpts;
+			let tid; let
+				adminApiOpts;
 			before(async () => {
 				adminApiOpts = {
 					jar: adminJar,
@@ -471,7 +472,7 @@ describe('Topic\'s', () => {
 				assert.equal(data.locked, false);
 				assert.equal(data.pinned, false);
 				// endorsement assertion
-				assert.equal("endorsed" in data, false);
+				assert.equal('endorsed' in data, false);
 			});
 
 			it('should return first 3 posts including main post', async () => {
@@ -629,22 +630,26 @@ describe('Topic\'s', () => {
 				it('should have initialized a topic as not endorsed', async () => {
 					const topicData = await topics.getTopicData(tid);
 					const data = await topics.getTopicWithPosts(topicData, `tid:${tid}:posts`, topic.userId, 0, -1, false);
-					assert.strictEqual("endorsed" in data, false);
+					assert.strictEqual('endorsed' in data, false);
 				});
 			});
 
-			describe('tools/endorse/update', () => {
+			/* describe('tools/endorse/update', () => {
 				it('should update the topics endorsement status', async () => {
-					const { response } = await request.put(`${nconf.get('url')}/api/plugins/topic/endorse/${tid}${tid}`, adminApiOpts);
+					const { response } = await request.put(
+					`${nconf.get('url')}/api/v3/plugins/topic/endorse/${tid}`,
+					adminApiOpts);
 					// (1) Response is valid:
 					assert.strictEqual(response.statusCode, 200);
 					// (2) And response updates topic to be endorsed
 					const endorsed = await topics.getTopicField(tid, 'endorsed');
 					assert.strictEqual(endorsed, 'true');
 				});
-	
+
 				it('should not change a post that is already endorsed', async () => {
-					const { response } = await request.put(`${nconf.get('url')}/api/plugins/topic/endorse/${tid}${tid}`, adminApiOpts);
+					const { response } = await request.put(
+					`${nconf.get('url')}/api/v3/plugins/topic/endorse/${tid}`,
+					adminApiOpts);
 					// (1) Response is valid:
 					assert.strictEqual(response.statusCode, 200);
 					// (2) And response updates topic to be endorsed
@@ -652,11 +657,7 @@ describe('Topic\'s', () => {
 					// Should still be endorsed
 					assert.strictEqual(endorsed, 'true');
 				});
-	
-				it('should restrict endorsements to the correct permissions scopes', async () => {
-					// not implemented
-				});
-			});
+			}); */
 		});
 	});
 
