@@ -22,11 +22,9 @@ async function call(url, method, { body, timeout, jar, ...config } = {}) {
 			...config.headers,
 		},
 	};
-	if (typeof timeout !== 'number' || timeout <= 0) {
-		// opts.signal = AbortSignal.timeout(timeout);
-		timeout = 5000;
+	if (timeout > 0) {
+		opts.signal = AbortSignal.timeout(timeout);
 	}
-	opts.signal = AbortSignal.timeout(timeout);
 
 	if (body && ['POST', 'PUT', 'PATCH', 'DEL', 'DELETE'].includes(method)) {
 		if (opts.headers['content-type'] && jsonTest.test(opts.headers['content-type'])) {
