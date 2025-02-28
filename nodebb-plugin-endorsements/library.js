@@ -121,7 +121,6 @@ plugin.buildTools = function (threadData) {
 	 *  we could listen for the post to be loaded and add a class displaying whether its endorsed
 	 *  not sure if this class would persist across loads tho
 	 */
-	console.log('attempted to build topic tools\n');
 	return threadData;
 };
 

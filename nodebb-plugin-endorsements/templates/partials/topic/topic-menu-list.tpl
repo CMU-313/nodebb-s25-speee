@@ -20,11 +20,7 @@
 </li>
 
 <li>
-	<a component="topic/move" href="#" class="dropdown-item rounded-1 d-flex align-items-center gap-2" role="menuitem"><i class="fa fa-fw fa-arrows text-secondary"></i> [[topic:thread-tools.move]]</a>
-</li>
-
-<li>
-	<a component="topic/endorse" href="#" class="dropdown-item rounded-1 d-flex align-items-center gap-2" role="menuitem"><i class="fa fa-fw fa-solid fa-thumbs-up text-secondary"></i> [[topic:thread-tools.endorse]]</a>
+	<a component="topic/endorse" href="#" class="dropdown-item rounded-1 d-flex align-items-center gap-2" role="menuitem"><i class="fa-solid fa-thumbs-up"></i> [[topic:thread-tools.endorse]]</a>
 </li>
 
 <li>
