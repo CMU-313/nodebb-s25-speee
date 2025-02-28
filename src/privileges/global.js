@@ -74,7 +74,7 @@ privsGlobal.list = async function () {
 		});
 	}
 
-	
+
 
 	const keys = await utils.promiseParallel({
 		users: privsGlobal.getUserPrivilegeList(),

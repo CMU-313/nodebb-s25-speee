@@ -618,7 +618,31 @@ describe('Topic\'s', () => {
 					assert.strictEqual(postsData[i].content, `topic reply ${i}`);
 				}
 			});
+		});
+		describe('tools/endorse/intialize', () => {
+			it('should have initialized a topic as not endorsed', async () => {
+				const newTopic = await apiTopics.create({ uid: 1 }, 1);
+				const endorsed = await topics.getTopicField(newTopic.tid, 'endorsed');
+				assert.strictEqual(endorsed, 0);
+			});
+		});
 
+
+		describe('tools/endorse/update', () => {
+			it('should update the topics endorsement status upon click', async () => {
+				// not implemented
+				assert.strictEqual(0, 1);
+			});
+
+			it('should not change a post that is already endorsed', async () => {
+				// not implemented
+				assert.strictEqual(0, 1);
+			});
+
+			it('should restrict endorsements to the correct permissions scopes', async () => {
+				// not implemented
+				assert.strictEqual(0, 1);
+			});
 		});
 	});
 
@@ -636,33 +660,6 @@ describe('Topic\'s', () => {
 				});
 			});
 		});
-	});
-
-	describe('tools/endorse/intialize',() => {
-		it('should have initialized a topic as not endorsed', async () => {
-			await apiTopics.create({ uid: 1 }, 1);
-			const endorsed = await topics.getTopicField(newTopic.tid, 'endorsed');
-			assert.strictEqual(endorsed, 0);
-		});
-	});
-
-
-	describe('tools/endorse/update',() => {
-		it('should update the topics endorsement status upon click', async () => {
-			//not implemented 
-			assert.strictEqual(0, 1);
-		});
-
-		it('should not change a post that is already endorsed', async () => {
-			// not implemented
-			assert.strictEqual(0, 1);
-		});
-
-		it('should restrict endorsements to the correct permissions scopes', async () => {
-			// not implemented
-			assert.strictEqual(0, 1);
-		});
-
 	});
 
 	describe('tools/delete/restore/purge', () => {

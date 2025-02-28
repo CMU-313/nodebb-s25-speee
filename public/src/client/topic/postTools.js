@@ -13,7 +13,6 @@ define('forum/topic/postTools', [
 	'hooks',
 	'helpers',
 ], function (share, navigator, components, translator, votes, api, bootbox, alerts, hooks, helpers) {
-
 	const PostTools = {};
 
 	let staleReplyAnyway = false;

@@ -85,7 +85,7 @@ module.exports = function (Categories) {
 			'groups:posts:upvote',
 			'groups:posts:downvote',
 			'groups:topics:delete',
-			'groups:general:chat' /** added this */
+			'groups:general:chat', /** added this */
 		];
 		const modPrivileges = allPrivileges;
 		const guestPrivileges = ['groups:find', 'groups:read', 'groups:topics:read'];
@@ -124,7 +124,7 @@ module.exports = function (Categories) {
 		await privileges.categories.give(result.modPrivileges, category.cid, ['administrators', 'Global Moderators']);
 		await privileges.categories.give(result.guestPrivileges, category.cid, ['guests', 'spiders']);
 		// console.log("giving default category privs \n");
-		await privileges.categories.give(result.defaultPrivileges, category.cid, ['students', 'staff','assistant-staff']);
+		await privileges.categories.give(result.defaultPrivileges, category.cid, ['students', 'staff', 'assistant-staff']);
 
 		cache.del('categories:cid');
 		await clearParentCategoryCache(parentCid);

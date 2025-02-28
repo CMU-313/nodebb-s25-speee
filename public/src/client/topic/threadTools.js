@@ -64,7 +64,6 @@ define('forum/topic/threadTools', [
 		topicContainer.on('click', '[component="topic/endorse"]', function () {
 			const tid = ajaxify.data.tid;
 			api.put(`/plugins/topic/endorse/${tid}`);
-			// topicCommand('put', '/endorse', 'endorse');
 			return false;
 		});
 
@@ -122,12 +121,6 @@ define('forum/topic/threadTools', [
 				fork.init();
 			});
 		});
-
-		// topicContainer.on('click', '[component="topic/endorse"]', function () {
-		// 	require(['forum/topic/endorse'], function (endorse) {
-		// 		endorse.init();
-		// 	});
-		// });
 
 		topicContainer.on('click', '[component="topic/merge"]', function () {
 			require(['forum/topic/merge'], function (merge) {

@@ -294,7 +294,7 @@ define('forum/category/tools', [
 	// When we endorse the topic, display that we've endorsed it
 	function onTopicEndorsed(data) {
 		const topic = getTopicEl(data.tid);
-		console.log("Topic element: ", topic);
+		console.log('Topic element: ', topic);
 	}
 
 	function onTopicMoved(data) {

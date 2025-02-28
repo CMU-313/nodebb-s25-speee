@@ -9,5 +9,5 @@ module.exports = {
 	routeHelpers: require.main.require('./src/routes/helpers'),
 	posts: require.main.require('./src/posts'),
 	plugins: require.main.require('./src/plugins'),
-	topics: require.main.require('./src/topics')
+	topics: require.main.require('./src/topics'),
 };

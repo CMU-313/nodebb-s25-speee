@@ -144,7 +144,7 @@ helpers.getGroupPrivileges = async function (cid, groupPrivileges) {
 	moveToFront(groupNames, 'unverified-users');
 	moveToFront(groupNames, 'verified-users');
 	moveToFront(groupNames, 'registered-users');
-	
+
 
 	const adminIndex = groupNames.indexOf('administrators');
 	if (adminIndex !== -1) {
