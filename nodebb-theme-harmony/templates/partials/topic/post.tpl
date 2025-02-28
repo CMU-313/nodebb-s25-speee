@@ -60,13 +60,7 @@
 		</div>
 
 		<div class="content mt-2 text-break" component="post/content" itemprop="text">
-			{{{ if posts.endorsed }}}
-			<div>Post endorsed!!!</div>
-			{{{ else }}}
-			<div>Post NOT endorsed</div>
-			{{{ end }}}
 			{posts.content}
-			HELLO WORLD
 		</div>
 	</div>
 </div>
