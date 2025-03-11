@@ -1,8 +1,9 @@
 const Iroh = require('iroh');
 const fs = require('fs');
 
-/** does not handle full javascript files well */
 
+
+/** does not handle full javascript files well */
 const apiFileContents = fs.readFileSync('./test/api.txt').toString();
 
 let stage = new Iroh.Stage(apiFileContents);
