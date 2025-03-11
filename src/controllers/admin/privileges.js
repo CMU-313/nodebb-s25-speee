@@ -6,7 +6,9 @@ const privileges = require('../../privileges');
 const privilegesController = module.exports;
 
 privilegesController.get = async function (req, res) {
-	console.log('getting privlege data \n');
+
+	
+	// console.log('getting privlege data \n');
 	const cid = req.params.cid ? parseInt(req.params.cid, 10) || 0 : 0;
 	const isAdminPriv = req.params.cid === 'admin';
 
