@@ -1,5 +1,6 @@
 'use strict';
 
+const Iroh = require('iroh');
 const _ = require('lodash');
 const assert = require('assert');
 const path = require('path');
@@ -25,6 +26,7 @@ const flags = require('../src/flags');
 const messaging = require('../src/messaging');
 const utils = require('../src/utils');
 const api = require('../src/api');
+
 
 describe('API', async () => {
 	let readApi = false;
@@ -187,6 +189,15 @@ describe('API', async () => {
 		const adminUid = await user.create({ username: 'admin', password: '123456' });
 		const unprivUid = await user.create({ username: 'unpriv', password: '123456' });
 		const emailConfirmationUid = await user.create({ username: 'emailConf', email: 'emailConf@example.org' });
+
+		let code = `const emailConfirmationUid = await user.create({ username: 'emailConf', email: 'emailConf@example.org' });`
+		let stage = new Iroh.Stage(code); // Iroh modification 
+		let listener = stage.addListener(Iroh.VAR);
+		listener.on("after", (e) => { //iroh modification
+			// this logs the variable's 'name' and 'value'
+			console.log(e.name, "=>", e.value); // prints "foo => 42"
+		});
+
 		await user.setUserField(adminUid, 'email', 'test@example.org');
 		await user.setUserField(unprivUid, 'email', 'unpriv@example.org');
 		await user.email.confirmByUid(adminUid);
