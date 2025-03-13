@@ -1,6 +1,4 @@
 'use strict';
-const escomplex = require('escomplex');
-
 
 define('forum/account/topics', [
 	'forum/account/header',
