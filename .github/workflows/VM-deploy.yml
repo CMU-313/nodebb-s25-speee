@@ -37,4 +37,4 @@ jobs:
             docker compose --profile redis up --build -d
             npm run static
             cd report
-            nohup http-server > /dev/null >2&1
+            nohup http-server > server.log 2>&1 < /dev/null &
