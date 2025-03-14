@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - test-plato-deployment
   workflow_dispatch:
     
 concurrency:
@@ -34,3 +35,6 @@ jobs:
             git pull origin main
             docker compose down
             docker compose --profile redis up --build -d
+            npm run static
+            cd report
+            nohup http-server > /dev/null >2&1
