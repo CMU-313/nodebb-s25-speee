@@ -34,3 +34,6 @@ jobs:
             git pull origin main
             docker compose down
             docker compose --profile redis up --build -d
+            npm run static
+            cd report
+            nohup http-server > server.log 2>&1 < /dev/null &
