@@ -190,9 +190,11 @@ module.exports = function (Posts) {
 		}
 
 		const postData = await Posts.getPostFields(pid, ['pid', 'uid', 'tid']);
-		const newReputation = await user.incrementUserReputationBy(postData.uid, type === 'upvote' ? 1 : -1);
+		const isAdmin = await user.isAdministrator(uid);
+		const reputationPoints = isAdmin && type === 'upvote' ? 5 : (type === 'upvote' ? 1 : -1);
+		const newReputation = await user.incrementUserReputationBy(postData.uid, reputationPoints);
 
-		await adjustPostVotes(postData, uid, type, unvote);
+		await adjustPostVotes(postData, uid, type, unvote, isAdmin);
 
 		await fireVoteHook(postData, uid, type, unvote, voteStatus);
 
@@ -226,7 +228,7 @@ module.exports = function (Posts) {
 		});
 	}
 
-	async function adjustPostVotes(postData, uid, type, unvote) {
+	async function adjustPostVotes(postData, uid, type, unvote, isAdmin) {
 		const notType = (type === 'upvote' ? 'downvote' : 'upvote');
 		if (unvote) {
 			await db.setRemove(`pid:${postData.pid}:${type}`, uid);
@@ -239,9 +241,19 @@ module.exports = function (Posts) {
 			db.setCount(`pid:${postData.pid}:upvote`),
 			db.setCount(`pid:${postData.pid}:downvote`),
 		]);
+
 		postData.upvotes = upvotes;
 		postData.downvotes = downvotes;
-		postData.votes = postData.upvotes - postData.downvotes;
+		
+		// Calculate base vote count
+		let voteCount = postData.upvotes - postData.downvotes;
+		
+		// If this is an admin upvote, add 4 more points (since regular upvote already added 1)
+		if (isAdmin && type === 'upvote' && !unvote) {
+			voteCount += 4;
+		}
+		
+		postData.votes = voteCount;
 		await Posts.updatePostVoteCount(postData);
 	}
 
