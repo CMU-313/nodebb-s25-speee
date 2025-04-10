@@ -9,6 +9,8 @@ set_defaults() {
   export NODEBB_INIT_VERB="${NODEBB_INIT_VERB:-install}"
   export NODEBB_BUILD_VERB="${NODEBB_BUILD_VERB:-build}"
   export START_BUILD="${START_BUILD:-${FORCE_BUILD_BEFORE_START:-false}}"
+  # Only build option--allows for specifying to build WITHOUT running
+  export ONLY_BUILD="${ONLY_BUILD:-false}"
   export SETUP="${SETUP:-}"
   export PACKAGE_MANAGER="${PACKAGE_MANAGER:-npm}"
   export OVERRIDE_UPDATE_LOCK="${OVERRIDE_UPDATE_LOCK:-false}"
@@ -187,7 +189,10 @@ main() {
     start_setup_session "$CONFIG"
   fi
 
-  if [ -f "$CONFIG" ]; then
+  if [ $ONLY_BUILD = true ]; then
+    echo "Detected only build flag! Building then quitting."
+    build_forum "$CONFIG" 'true'
+  elif [ -f "$CONFIG" ]; then
     start_forum "$CONFIG" "$START_BUILD"
   else
     start_installation_session "$NODEBB_INIT_VERB" "$CONFIG"

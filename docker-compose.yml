@@ -1,10 +1,19 @@
-version: '3.8'
-
 services:
+  ollama:
+    image: ollama/ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama  # Named volume for model persistence
+    restart: unless-stopped
   translator:
       build:
         context: ../translator-service
       command: flask run --host=0.0.0.0
+      depends_on:
+        - ollama
+      environment:
+        - OLLAMA_HOST=http://ollama:11434
       ports:
         - "5000:5000"
       environment:
@@ -39,6 +48,9 @@ services:
     volumes:
       - mongo-data:/data/db
       - ./install/docker/mongodb-user-init.js:/docker-entrypoint-initdb.d/user-init.js
+    profiles:
+      - mongo
+  
   redis:
     image: redis:7.2.4-alpine
     restart: unless-stopped
@@ -62,6 +74,7 @@ services:
       - postgres
 
 volumes:
+  ollama-data: {}
   mongo-data:
     driver: local
     driver_opts:

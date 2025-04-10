@@ -20,7 +20,9 @@ module.exports = function (Posts) {
 		const content = data.content.toString();
 		const timestamp = data.timestamp || Date.now();
 		const isMain = data.isMain || false;
+		console.log("Data:", data);
 		const [isEnglish, translatedContent] = await translate.translate(data)
+		console.log("English, translated content", isEnglish, translatedContent);
 
 		if (!uid && parseInt(uid, 10) !== 0) {
 			throw new Error('[[error:invalid-uid]]');

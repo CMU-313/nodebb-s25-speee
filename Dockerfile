@@ -64,9 +64,11 @@ RUN chmod +x /usr/local/bin/entrypoint.sh \
 USER ${USER}
 
 EXPOSE 4567
+RUN rm -rf /opt/config/config.json
 
 VOLUME ["/usr/src/app/node_modules", "/usr/src/app/build", "/usr/src/app/public/uploads", "/opt/config/"]
 
+# ENV FORCE_BUILD_BEFORE_START='true'
 # Utilising tini as our init system within the Docker container for graceful start-up and termination.
 # Tini serves as an uncomplicated init system, adept at managing the reaping of zombie processes and forwarding signals.
 # This approach is crucial to circumvent issues with unmanaged subprocesses and signal handling in containerised environments.

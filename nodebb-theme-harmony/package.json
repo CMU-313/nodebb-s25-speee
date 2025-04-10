@@ -9,7 +9,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/NodeBB/nodebb-theme-harmony"
-    // "nodebb-theme-harmony": "file:./nodebb-theme-harmony"
   },
   "scripts": {
     "lint": "eslint ."
